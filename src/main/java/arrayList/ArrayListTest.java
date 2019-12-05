@@ -3,10 +3,14 @@ package arrayList;
 
 public class ArrayListTest {
 
-    public static void main(String[] args) {
-        MyArrayList<String> list = new MyArrayList<>();
-        for (int i = 0; i < 12; i++) {
-            list.add("A");
-        }
+    public static void main(String[] args) throws Exception {
+        MyArrayList<String> list = new MyArrayList<>(3);
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add(2,"100");
+        list.printArray();
+
     }
 }
