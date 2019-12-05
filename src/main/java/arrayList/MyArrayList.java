@@ -61,9 +61,8 @@ public class MyArrayList<E> extends AbstractList<E>{
     public boolean addAll(Collection<? extends E> c){
         increaseCapacityForCollection(size + c.size());
         Object[] collectionArray = c.toArray(new Object[c.size()]);
-        for (Object o: collectionArray) {
-            elementData[size++] = o;
-        }
+        System.arraycopy(collectionArray,0,elementData,size,collectionArray.length);
+        size += collectionArray.length;
         return true;
     }
 

@@ -1,6 +1,5 @@
 import arrayList.MyArrayList;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -34,6 +33,7 @@ public class ArrayListTest {
         Assert.assertArrayEquals(new Object[]
                         {"1","2","100","3","4","5","6",null},
                 list.getElementData());
+        list.printArray();
     }
 
 
@@ -49,6 +49,7 @@ public class ArrayListTest {
         Assert.assertArrayEquals(new Object[]
                         {"1","2","3","4","6",null,null,null},
                 list.getElementData());
+        list.printArray();
     }
 
     @Test
@@ -63,6 +64,7 @@ public class ArrayListTest {
         Assert.assertArrayEquals(new Object[]
                         {"1","2","4","5","6",null,null,null},
                 list.getElementData());
+        list.printArray();
     }
 
     @Test
