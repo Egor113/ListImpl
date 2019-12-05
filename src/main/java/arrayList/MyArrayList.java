@@ -60,7 +60,8 @@ public class MyArrayList<E> extends AbstractList<E>{
 
     public boolean addAll(Collection<? extends E> c){
         increaseCapacityForCollection(size + c.size());
-        for (Object o: c) {
+        Object[] collectionArray = c.toArray(new Object[c.size()]);
+        for (Object o: collectionArray) {
             elementData[size++] = o;
         }
         return true;

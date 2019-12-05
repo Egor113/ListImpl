@@ -79,9 +79,9 @@ public class ArrayListTest {
         set.add("300");
 
         for (String s: set) {
-            System.out.println(s);
+            System.out.print(s + " ");
         }
-
+        System.out.println();
         list.addAll(set);
 
         Assert.assertArrayEquals(new Object[]
