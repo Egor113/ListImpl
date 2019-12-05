@@ -3,11 +3,14 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ArrayListTest {
 
     @Test
     public void testAdd(){
-        MyArrayList list = new MyArrayList(5);
+        MyArrayList<String> list = new MyArrayList<>(5);
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
@@ -20,7 +23,7 @@ public class ArrayListTest {
 
     @Test
     public void testAddWithIndex(){
-        MyArrayList list = new MyArrayList(5);
+        MyArrayList<String> list = new MyArrayList<>(5);
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
@@ -36,7 +39,7 @@ public class ArrayListTest {
 
     @Test
     public void testRemove(){
-        MyArrayList list = new MyArrayList(5);
+        MyArrayList<String> list = new MyArrayList<>(5);
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
@@ -50,7 +53,7 @@ public class ArrayListTest {
 
     @Test
     public void testRemoveWithValue(){
-        MyArrayList list = new MyArrayList(5);
+        MyArrayList<String> list = new MyArrayList<>(5);
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
@@ -60,6 +63,32 @@ public class ArrayListTest {
         Assert.assertArrayEquals(new Object[]
                         {"1","2","4","5","6",null,null,null},
                 list.getElementData());
+    }
+
+    @Test
+    public void testAddAll(){
+        MyArrayList<String> list = new MyArrayList<>(5);
+        for (int i = 1; i <= 6; i++) {
+            list.add(Integer.toString(i));
+        }
+        list.printArray();
+
+        Set<String> set = new HashSet<>();
+        set.add("100");
+        set.add("200");
+        set.add("300");
+
+        for (String s: set) {
+            System.out.println(s);
+        }
+
+        list.addAll(set);
+
+        Assert.assertArrayEquals(new Object[]
+                        {"1","2","3","4","5","6","100","200","300",null,null,null,null,null},
+                list.getElementData());
+
+        list.printArray();
     }
 
 

@@ -1,6 +1,7 @@
 package arrayList;
 
 import java.util.AbstractList;
+import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.function.UnaryOperator;
 
@@ -55,6 +56,23 @@ public class MyArrayList<E> extends AbstractList<E>{
         elementData[index] = element;
         System.arraycopy(afterInsertBuffer,0,elementData,
                 index+1,afterInsertBuffer.length);
+    }
+
+    public boolean addAll(Collection<? extends E> c){
+        increaseCapacityForCollection(size + c.size());
+        for (Object o: c) {
+            elementData[size++] = o;
+        }
+        return true;
+    }
+
+    private void increaseCapacityForCollection(int totalSize) {
+        if (totalSize >= maxSize) {
+            maxSize = (totalSize * 3)/2 + 1;
+            Object[] elementDataBuffer = new Object[maxSize];
+            System.arraycopy(elementData,0,elementDataBuffer,0,size);
+            elementData = elementDataBuffer;
+        }
     }
 
     public void removeIndex(int index){
