@@ -50,7 +50,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     public void add(int index, E element){
         ensureCapacity();
         Object[] afterInsertBuffer = new Object[size-index];
-        System.arraycopy(elementData,size-index,
+        System.arraycopy(elementData,index,
                 afterInsertBuffer,0,afterInsertBuffer.length);
         elementData[index] = element;
         System.arraycopy(afterInsertBuffer,0,elementData,
@@ -63,19 +63,19 @@ public class MyArrayList<E> extends AbstractList<E>{
         System.arraycopy(elementData,index+1,
                 afterRemoveBuffer,0,afterRemoveBuffer.length);
         System.arraycopy(afterRemoveBuffer,0,elementData,index,afterRemoveBuffer.length);
-        size--;
+        elementData[--size] = null;
         return element;
     }
 
     private void increaseCapacity(){
-        maxSize = Math.round((maxSize * 3)/2) + 1;
+        maxSize = (maxSize * 3)/2 + 1;
         Object[] elementDataBuffer = new Object[maxSize];
         System.arraycopy(elementData,0,elementDataBuffer,0,size);
         elementData = elementDataBuffer;
     }
 
     public void printArray(){
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < maxSize; i++) {
             System.out.print(elementData[i] + " ");
         }
     }
