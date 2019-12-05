@@ -57,14 +57,33 @@ public class MyArrayList<E> extends AbstractList<E>{
                 index+1,afterInsertBuffer.length);
     }
 
-    public E remove(int index){
-        E element = get(index);
+    public void removeIndex(int index){
         Object[] afterRemoveBuffer = new Object[size-index-1];
         System.arraycopy(elementData,index+1,
                 afterRemoveBuffer,0,afterRemoveBuffer.length);
         System.arraycopy(afterRemoveBuffer,0,elementData,index,afterRemoveBuffer.length);
         elementData[--size] = null;
+    }
+
+    public E remove(int index){
+        E element = get(index);
+        removeIndex(index);
         return element;
+    }
+
+    public boolean remove(Object o){
+        int deleteIndex = -1;
+        for (int i = 0; i < size; i++) {
+            if (o.equals(elementData[i])){
+                deleteIndex = i;
+                break;
+            }
+        }
+        if (deleteIndex == -1){
+            return false;
+        }
+        removeIndex(deleteIndex);
+        return true;
     }
 
     private void increaseCapacity(){
@@ -78,6 +97,7 @@ public class MyArrayList<E> extends AbstractList<E>{
         for (int i = 0; i < maxSize; i++) {
             System.out.print(elementData[i] + " ");
         }
+        System.out.println();
     }
 
     @Override
