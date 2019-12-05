@@ -1,6 +1,7 @@
 package arrayList;
 
 import java.util.AbstractList;
+import java.util.NoSuchElementException;
 import java.util.function.UnaryOperator;
 
 public class MyArrayList<E> extends AbstractList<E>{
@@ -19,7 +20,7 @@ public class MyArrayList<E> extends AbstractList<E>{
         this.size = 0;
     }
 
-    public MyArrayList(int initialCapacity) throws Exception {
+    public MyArrayList(int initialCapacity){
         if (initialCapacity > 0){
             this.elementData = new Object[initialCapacity];
             this.maxSize = initialCapacity;
@@ -32,6 +33,10 @@ public class MyArrayList<E> extends AbstractList<E>{
 
     }
 
+    public Object[] getElementData() {
+        return elementData;
+    }
+
     private void ensureCapacity() {
         if (size >= maxSize) increaseCapacity();
     }
@@ -39,17 +44,27 @@ public class MyArrayList<E> extends AbstractList<E>{
     public boolean add(E element){
         ensureCapacity();
         elementData[size++] = element;
-        System.out.println("Size=" + size + " MaxSize=" + maxSize);
         return true;
     }
 
     public void add(int index, E element){
         ensureCapacity();
         Object[] afterInsertBuffer = new Object[size-index];
-        System.arraycopy(elementData,size-index,afterInsertBuffer,0,size-index);
+        System.arraycopy(elementData,size-index,
+                afterInsertBuffer,0,afterInsertBuffer.length);
         elementData[index] = element;
         System.arraycopy(afterInsertBuffer,0,elementData,
                 index+1,afterInsertBuffer.length);
+    }
+
+    public E remove(int index){
+        E element = get(index);
+        Object[] afterRemoveBuffer = new Object[size-index-1];
+        System.arraycopy(elementData,index+1,
+                afterRemoveBuffer,0,afterRemoveBuffer.length);
+        System.arraycopy(afterRemoveBuffer,0,elementData,index,afterRemoveBuffer.length);
+        size--;
+        return element;
     }
 
     private void increaseCapacity(){
@@ -60,14 +75,17 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public void printArray(){
-        for (Object o:elementData) {
-            System.out.print(o + " ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(elementData[i] + " ");
         }
     }
 
     @Override
     public E get(int index) {
-        return null;
+        if (elementData[index] != null){
+            return (E) elementData[index];
+        }
+        else throw new NoSuchElementException("No such index");
     }
 
     @Override

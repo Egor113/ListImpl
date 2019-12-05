@@ -9,8 +9,15 @@ public class ArrayListTest {
         list.add("2");
         list.add("3");
         list.add("4");
-        list.add(2,"100");
+        list.add("5");
+        list.add("6");
+        list.add("7");
+        //list.add(2,"100");
         list.printArray();
+        list.remove(3);
+        System.out.println();
+        list.printArray();
+
 
     }
 }
