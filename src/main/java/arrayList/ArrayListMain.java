@@ -1,21 +1,18 @@
 package arrayList;
 
 
+import java.util.*;
+
 public class ArrayListMain {
 
-    public static void main(String[] args){
-        MyArrayList<String> list = new MyArrayList<>(3);
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-        list.add("6");
-        list.add("7");
-        list.printArray();
-        list.remove(3);
-        System.out.println();
-        list.printArray();
+    public static void main(String[] args) {
+
+        List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3,4, 5));
+        List<Integer> list2 = new ArrayList<>(Arrays.asList(1, 5));
+        list1.removeAll(list2);
+        for (int i: list1) {
+            System.out.print(i + " ");
+        }
 
 
     }

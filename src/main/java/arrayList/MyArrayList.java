@@ -1,6 +1,7 @@
 package arrayList;
 
 import java.util.AbstractList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.function.UnaryOperator;
@@ -80,7 +81,6 @@ public class MyArrayList<E> extends AbstractList<E>{
         return true;
     }
 
-
     private void increaseCapacityForCollection(int totalSize) {
         if (totalSize >= maxSize) {
             maxSize = (totalSize * 3)/2 + 1;
@@ -117,6 +117,19 @@ public class MyArrayList<E> extends AbstractList<E>{
         }
         removeIndex(deleteIndex);
         return true;
+    }
+
+    public boolean removeAll(Collection<?> c){
+        int removeCounter = 0;
+        Object[] collArr = c.toArray(new Object[c.size()]);
+        Arrays.stream(elementData).filter(() -> e.equals(collArr))
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < collArr.length; j++) {
+                if (elementData[i].equals(collArr[j])){
+
+                }
+            }
+        }
     }
 
     private void increaseCapacity(){

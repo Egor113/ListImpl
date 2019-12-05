@@ -36,7 +36,6 @@ public class ArrayListTest {
         list.printArray();
     }
 
-
     @Test
     public void testRemove(){
         MyArrayList<String> list = new MyArrayList<>(5);
