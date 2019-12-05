@@ -119,18 +119,18 @@ public class MyArrayList<E> extends AbstractList<E>{
         return true;
     }
 
-    public boolean removeAll(Collection<?> c){
-        int removeCounter = 0;
-        Object[] collArr = c.toArray(new Object[c.size()]);
-        Arrays.stream(elementData).filter(() -> e.equals(collArr))
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < collArr.length; j++) {
-                if (elementData[i].equals(collArr[j])){
-
-                }
-            }
-        }
-    }
+//    public boolean removeAll(Collection<?> c){
+//        int removeCounter = 0;
+//        Object[] collArr = c.toArray(new Object[c.size()]);
+//        Arrays.stream(elementData).filter(() -> e.equals(collArr))
+//        for (int i = 0; i < size; i++) {
+//            for (int j = 0; j < collArr.length; j++) {
+//                if (elementData[i].equals(collArr[j])){
+//
+//                }
+//            }
+//        }
+//    }
 
     private void increaseCapacity(){
         maxSize = (maxSize * 3)/2 + 1;
