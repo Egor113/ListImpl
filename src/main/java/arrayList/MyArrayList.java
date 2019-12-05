@@ -67,6 +67,21 @@ public class MyArrayList<E> extends AbstractList<E>{
         return true;
     }
 
+    public boolean addAll(int index, Collection<? extends E> c){
+        increaseCapacityForCollection(size + c.size());
+        Object[] collectionArray = c.toArray(new Object[c.size()]);
+        Object[] afterInsertBuffer = new Object[size-index];
+        System.arraycopy(elementData,index,
+                afterInsertBuffer,0,afterInsertBuffer.length);
+        System.arraycopy(collectionArray,0,elementData,
+                index,collectionArray.length);
+        System.arraycopy(afterInsertBuffer,0,elementData,
+                index+collectionArray.length,afterInsertBuffer.length);
+        size += collectionArray.length;
+        return true;
+    }
+
+
     private void increaseCapacityForCollection(int totalSize) {
         if (totalSize >= maxSize) {
             maxSize = (totalSize * 3)/2 + 1;

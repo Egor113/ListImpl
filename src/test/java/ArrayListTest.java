@@ -91,5 +91,31 @@ public class ArrayListTest {
         list.printArray();
     }
 
+    @Test
+    public void testAddAllWithIndex(){
+        MyArrayList<String> list = new MyArrayList<>(5);
+        for (int i = 1; i <= 6; i++) {
+            list.add(Integer.toString(i));
+        }
+        list.printArray();
+
+        Set<String> set = new HashSet<>();
+        set.add("100");
+        set.add("200");
+        set.add("300");
+
+        for (String s: set) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+        list.addAll(1,set);
+
+        Assert.assertArrayEquals(new Object[]
+                        {"1","100","200","300","2","3","4","5","6",null,null,null,null,null},
+                list.getElementData());
+
+        list.printArray();
+    }
+
 
 }
