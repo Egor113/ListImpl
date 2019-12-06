@@ -4,7 +4,7 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RemoveByValue {
+public class RemoveByValueTest {
 
     @Test
     public void testRemoveByValue1(){

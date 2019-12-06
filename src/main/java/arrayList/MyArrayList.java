@@ -1,9 +1,7 @@
 package arrayList;
 
 import java.util.AbstractList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.function.UnaryOperator;
 
 public class MyArrayList<E> extends AbstractList<E>{
@@ -94,7 +92,7 @@ public class MyArrayList<E> extends AbstractList<E>{
         }
     }
 
-    public void removeIndex(int index){
+    public void removeByIndex(int index){
         Object[] afterRemoveBuffer = new Object[size-index-1];
         System.arraycopy(elementData,index+1,
                 afterRemoveBuffer,0,afterRemoveBuffer.length);
@@ -103,15 +101,19 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public E remove(int index){
+        if (index < 0 || index > size){
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
+        }
         E element = get(index);
-        removeIndex(index);
+        removeByIndex(index);
         return element;
     }
 
     public boolean remove(Object o){
         for (int i = 0; i < size; i++) {
             if (o.equals(elementData[i])){
-                removeIndex(i);
+                removeByIndex(i);
                 return true;
             }
         }
@@ -147,10 +149,11 @@ public class MyArrayList<E> extends AbstractList<E>{
 
     @Override
     public E get(int index) {
-        if (elementData[index] != null){
-            return (E) elementData[index];
+        if (index < 0 || index > size){
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
         }
-        else throw new NoSuchElementException("No such index");
+        return (E) elementData[index];
     }
 
     @Override
