@@ -44,4 +44,10 @@ public class AddWithIndexTest {
         MyArrayList<String> list = new MyArrayList<>(5);
         list.add(-1,"100");
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddWithIndex4(){
+        MyArrayList<String> list = new MyArrayList<>(5);
+        list.add(6,"100");
+    }
 }

@@ -50,7 +50,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public void add(int index, E element){
-        if (index < 0){
+        if (index < 0 || index > size){
             throw new IndexOutOfBoundsException
                     ("Index: " + index + ", Size: " + size);
         }
@@ -109,18 +109,13 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public boolean remove(Object o){
-        int deleteIndex = -1;
         for (int i = 0; i < size; i++) {
             if (o.equals(elementData[i])){
-                deleteIndex = i;
-                break;
+                removeIndex(i);
+                return true;
             }
         }
-        if (deleteIndex == -1){
-            return false;
-        }
-        removeIndex(deleteIndex);
-        return true;
+        return false;
     }
 
 //    public boolean removeAll(Collection<?> c){
