@@ -50,6 +50,10 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public void add(int index, E element){
+        if (index < 0){
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
+        }
         ensureCapacity();
         Object[] afterInsertBuffer = new Object[size-index];
         System.arraycopy(elementData,index,

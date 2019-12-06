@@ -25,18 +25,23 @@ public class AddWithIndexTest {
 
     @Test
     public void testAddWithIndex2(){
-        MyArrayList<String> list = new MyArrayList<>(5);
+        MyArrayList<String> list = new MyArrayList<>(3);
 
-        for (int i = 1; i <= 7; i++) {
+        for (int i = 1; i <= 3; i++) {
             list.add(Integer.toString(i));
         }
 
         list.printArray();
-        list.add(-1,"100");
+        list.add(1,null);
 
-        Assert.assertArrayEquals(new Object[]
-                        {"1","2","100","3","4","5","6","7"},
+        Assert.assertArrayEquals(new Object[]{"1",null,"2","3",null},
                 list.getElementData());
         list.printArray();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddWithIndex3(){
+        MyArrayList<String> list = new MyArrayList<>(5);
+        list.add(-1,"100");
     }
 }

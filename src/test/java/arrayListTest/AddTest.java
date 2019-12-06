@@ -23,7 +23,7 @@ public class AddTest {
     @Test
     public void addTest2(){
 
-        MyArrayList<String> list = new MyArrayList<>(1);
+        MyArrayList<String> list = new MyArrayList<>(2);
         list.add("1");
         list.add(null);
 
