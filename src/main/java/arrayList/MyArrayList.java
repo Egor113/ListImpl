@@ -41,6 +41,22 @@ public class MyArrayList<E> extends AbstractList<E>{
         if (size >= maxSize) increaseCapacity();
     }
 
+    private void increaseCapacity(){
+        maxSize = (maxSize * 3)/2 + 1;
+        Object[] elementDataBuffer = new Object[maxSize];
+        System.arraycopy(elementData,0,elementDataBuffer,0,size);
+        elementData = elementDataBuffer;
+    }
+
+    private void increaseCapacityForCollection(int totalSize) {
+        if (totalSize > maxSize) {
+            maxSize = (totalSize * 3)/2 + 1;
+            Object[] elementDataBuffer = new Object[maxSize];
+            System.arraycopy(elementData,0,elementDataBuffer,0,size);
+            elementData = elementDataBuffer;
+        }
+    }
+
     public boolean add(E element){
         ensureCapacity();
         elementData[size++] = element;
@@ -95,17 +111,6 @@ public class MyArrayList<E> extends AbstractList<E>{
         return true;
     }
 
-    private void increaseCapacityForCollection(int totalSize) {
-        if (totalSize == maxSize){
-            increaseCapacity();
-        }else if (totalSize > maxSize) {
-            maxSize = (totalSize * 3)/2 + 1;
-            Object[] elementDataBuffer = new Object[maxSize];
-            System.arraycopy(elementData,0,elementDataBuffer,0,size);
-            elementData = elementDataBuffer;
-        }
-    }
-
     public void removeByIndex(int index){
         Object[] afterRemoveBuffer = new Object[size-index-1];
         System.arraycopy(elementData,index+1,
@@ -146,14 +151,6 @@ public class MyArrayList<E> extends AbstractList<E>{
 //            }
 //        }
 //    }
-
-    private void increaseCapacity(){
-        maxSize = (maxSize * 3)/2 + 1;
-        Object[] elementDataBuffer = new Object[maxSize];
-        System.arraycopy(elementData,0,elementDataBuffer,0,size);
-        elementData = elementDataBuffer;
-    }
-
     public void printArray(){
         for (int i = 0; i < maxSize; i++) {
             System.out.print(elementData[i] + " ");
@@ -174,7 +171,6 @@ public class MyArrayList<E> extends AbstractList<E>{
     public int size() {
         return size;
     }
-
 
     @Override
     public void replaceAll(UnaryOperator<E> operator) {
