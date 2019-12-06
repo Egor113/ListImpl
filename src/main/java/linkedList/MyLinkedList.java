@@ -51,6 +51,19 @@ public class MyLinkedList<E>
         size++;
     }
 
+    public E get(int index){
+        int currentIndex = 0;
+        Node<E> currentNode = first;
+        while (currentNode.next != null){
+            currentNode = currentNode.next;
+            if (currentIndex == index){
+                return currentNode.item;
+            }
+            currentIndex++;
+        }
+        return null;
+    }
+
     public Iterator<E> iterator (){return new Itr();}
 
     private class Itr implements Iterator<E>{
