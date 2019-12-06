@@ -61,5 +61,22 @@ public class AddAllTest {
         list.printArray();
     }
 
+    @Test
+    public void testAddAll4(){
+        MyArrayList<String> list = new MyArrayList<>(3);
+        for (int i = 1; i <= 4; i++) {
+            list.add(Integer.toString(i));
+        }
+        list.printArray();
+
+        Set<String> set = new HashSet<>();
+
+        list.addAll(set);
+
+        Assert.assertFalse( list.addAll(set));
+
+        list.printArray();
+    }
+
 
 }
