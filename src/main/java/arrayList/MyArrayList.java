@@ -62,6 +62,9 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public boolean addAll(Collection<? extends E> c){
+        if (c == null){
+            throw new NullPointerException();
+        }
         increaseCapacityForCollection(size + c.size());
         Object[] collectionArray = c.toArray(new Object[c.size()]);
         System.arraycopy(collectionArray,0,elementData,size,collectionArray.length);
