@@ -13,7 +13,7 @@ public class ArrayListMain {
 //            System.out.println(list1.get(i));
 //        }
 
-        list1.addAll(null);
+        list1.add(5,1);
 
 
     }
