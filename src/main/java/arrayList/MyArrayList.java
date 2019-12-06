@@ -1,7 +1,8 @@
 package arrayList;
 
-import java.util.AbstractList;
-import java.util.Collection;
+import com.sun.deploy.panel.ITreeNode;
+
+import java.util.*;
 import java.util.function.UnaryOperator;
 
 public class MyArrayList<E> extends AbstractList<E>{
@@ -143,6 +144,44 @@ public class MyArrayList<E> extends AbstractList<E>{
         this.elementData = new Object[DEFAULT_CAPACITY];
         this.maxSize = DEFAULT_CAPACITY;
         this.size = 0;
+    }
+
+    public Iterator<E> iterator(){
+        return new Itr();
+    }
+
+    private class Itr implements Iterator<E> {
+
+        int cursor;
+        int lastRet = -1;
+
+        Itr() {}
+
+        @Override
+        public boolean hasNext() {
+            return cursor != size;
+        }
+
+        @Override
+        public E next() {
+            int i = cursor;
+            if (i >= size){
+                throw new NoSuchElementException();
+            }
+            Object[] elementDataCopy = MyArrayList.this.elementData;
+            cursor = i + 1;
+            return (E) elementDataCopy[lastRet = i];
+        }
+
+        @Override
+        public void remove() {
+            if (lastRet < 0){
+                throw new IllegalStateException();
+            }
+            MyArrayList.this.remove(lastRet);
+            cursor = lastRet;
+            lastRet = -1;
+        }
     }
 
 //    public boolean removeAll(Collection<?> c){
