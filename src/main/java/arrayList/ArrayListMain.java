@@ -7,13 +7,11 @@ public class ArrayListMain {
 
     public static void main(String[] args) {
 
-        ArrayList<Integer> list1 = new ArrayList<>(Arrays.asList(1, null, 3,4, 5));
+        //Тестовый класс, на катором я проверял, как ведет себя реальный ArrayList
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1, null, 3,4, 5));
 
-//        for (int i = 0; i < list1.size(); i++) {
-//            System.out.println(list1.get(i));
-//        }
-
-        list1.add(5,1);
+        ArrayList<Integer> list2 = new ArrayList<>(Arrays.asList(12,10));
+        list.removeAll(list2);
 
 
     }

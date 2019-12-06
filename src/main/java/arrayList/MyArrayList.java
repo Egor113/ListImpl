@@ -1,9 +1,6 @@
 package arrayList;
 
-import com.sun.deploy.panel.ITreeNode;
-
 import java.util.*;
-import java.util.function.UnaryOperator;
 
 public class MyArrayList<E> extends AbstractList<E>{
 
@@ -38,7 +35,7 @@ public class MyArrayList<E> extends AbstractList<E>{
         return elementData;
     }
 
-    private void ensureCapacity() {
+    private void checkCapacity() {
         if (size >= maxSize) increaseCapacity();
     }
 
@@ -59,7 +56,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public boolean add(E element){
-        ensureCapacity();
+        checkCapacity();
         elementData[size++] = element;
         return true;
     }
@@ -69,7 +66,7 @@ public class MyArrayList<E> extends AbstractList<E>{
             throw new IndexOutOfBoundsException
                     ("Index: " + index + ", Size: " + size);
         }
-        ensureCapacity();
+        checkCapacity();
         Object[] afterInsertBuffer = new Object[size-index];
         System.arraycopy(elementData,index,
                 afterInsertBuffer,0,afterInsertBuffer.length);
@@ -141,8 +138,8 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public void clear(){
-        this.elementData = new Object[DEFAULT_CAPACITY];
-        this.maxSize = DEFAULT_CAPACITY;
+        for (int i = 0; i < size; i++)
+            elementData[i] = null;
         this.size = 0;
     }
 
@@ -185,17 +182,20 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
 //    public boolean removeAll(Collection<?> c){
-//        int removeCounter = 0;
+//        boolean isDeleted = false;
 //        Object[] collArr = c.toArray(new Object[c.size()]);
-//        Arrays.stream(elementData).filter(() -> e.equals(collArr))
 //        for (int i = 0; i < size; i++) {
 //            for (int j = 0; j < collArr.length; j++) {
 //                if (elementData[i].equals(collArr[j])){
-//
+//                    elementData[i] = null;
+//                    isDeleted = true;
 //                }
 //            }
 //        }
+//
+//        return isDeleted;
 //    }
+
     public void printArray(){
         for (int i = 0; i < maxSize; i++) {
             System.out.print(elementData[i] + " ");
@@ -216,11 +216,5 @@ public class MyArrayList<E> extends AbstractList<E>{
     public int size() {
         return size;
     }
-
-    @Override
-    public void replaceAll(UnaryOperator<E> operator) {
-
-    }
-
 
 }

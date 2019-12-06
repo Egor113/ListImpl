@@ -16,7 +16,7 @@ public class ClearTest {
 
         list.clear();
         Assert.assertArrayEquals(new Object[]
-                        {null,null,null,null,null,null,null,null,null,null},
+                        {null,null,null,null,null,null,null,null},
                 list.getElementData());
         list.printArray();
     }
