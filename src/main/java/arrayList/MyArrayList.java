@@ -111,7 +111,7 @@ public class MyArrayList<E> extends AbstractList<E>{
         return true;
     }
 
-    public void removeByIndex(int index){
+    private void removeByIndex(int index){
         Object[] afterRemoveBuffer = new Object[size-index-1];
         System.arraycopy(elementData,index+1,
                 afterRemoveBuffer,0,afterRemoveBuffer.length);
@@ -137,6 +137,12 @@ public class MyArrayList<E> extends AbstractList<E>{
             }
         }
         return false;
+    }
+
+    public void clear(){
+        this.elementData = new Object[DEFAULT_CAPACITY];
+        this.maxSize = DEFAULT_CAPACITY;
+        this.size = 0;
     }
 
 //    public boolean removeAll(Collection<?> c){
@@ -176,4 +182,6 @@ public class MyArrayList<E> extends AbstractList<E>{
     public void replaceAll(UnaryOperator<E> operator) {
 
     }
+
+
 }
