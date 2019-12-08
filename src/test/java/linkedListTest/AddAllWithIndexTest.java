@@ -12,10 +12,10 @@ public class AddAllWithIndexTest {
     @Test
     public void addWithIndexTest1(){
         MyLinkedList<Integer> list = new MyLinkedList<>();
-//        list.add(1);
-//        list.add(2);
-//
-//        list.print();
+        list.add(1);
+        list.add(2);
+
+        list.print();
 
         System.out.println();
 

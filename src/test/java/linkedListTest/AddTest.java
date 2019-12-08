@@ -12,10 +12,7 @@ public class AddTest {
         MyLinkedList<Integer> list = new MyLinkedList<>();
         list.add(1);
         list.add(2);
-        ListIterator<Integer> iterator = list.listIterator(0);
-        while (iterator.hasPrevious()){
-            System.out.println(iterator.previous());
-        }
+        list.print();
     }
 
     @Test
