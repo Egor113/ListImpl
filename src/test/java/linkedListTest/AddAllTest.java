@@ -4,14 +4,12 @@ import linkedList.MyLinkedList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.ListIterator;
-import java.util.Set;
+import java.util.*;
 
-public class AddAllWithIndexTest {
+public class AddAllTest {
 
     @Test
-    public void addAllWithIndexTest1(){
+    public void addAllTest1(){
         MyLinkedList<Integer> list = new MyLinkedList<>();
         for (int i = 0; i < 4; i++) {
             list.add(i);
@@ -19,70 +17,64 @@ public class AddAllWithIndexTest {
 
         list.print();
         System.out.println();
-
-        Set<Integer> set = new HashSet<>();
-        for (int i = 1; i < 4; i++) {
-            set.add(i * 100);
-        }
-        for (int i: set) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        list.addAll(0,set);
-        list.print();
-
-        int [] arr = new int[]{100,200,300,0,1,2,3};
-        int i = 6;
-        ListIterator<Integer> iterator = list.listIterator(list.size());
-        while (iterator.hasPrevious()){
-            Assert.assertEquals(arr[i], (int) iterator.previous());
-            i--;
-        }
-    }
-
-    @Test
-    public void addAllWithIndexTest2(){
-        MyLinkedList<Integer> list = new MyLinkedList<>();
-        for (int i = 0; i < 4; i++) {
-            list.add(i);
-        }
-
-        list.print();
-        System.out.println();
-
-        Set<Integer> set = new HashSet<>();
-        for (int i = 1; i < 4; i++) {
-            set.add(i * 100);
-        }
-        for (int i: set) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        list.addAll(2,set);
-        list.print();
-
-        int [] arr = new int[]{0,1,100,200,300,2,3};
-        int i = 6;
-        ListIterator<Integer> iterator = list.listIterator(list.size());
-        while (iterator.hasPrevious()){
-            Assert.assertEquals(arr[i], (int) iterator.previous());
-            i--;
-        }
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void addAllWithIndexTest3(){
-        MyLinkedList<Integer> list = new MyLinkedList<>();
-        for (int i = 0; i < 4; i++) {
-            list.add(i);
-        }
 
         Set<Integer> set = new HashSet<>();
         for (int i = 1; i < 3; i++) {
             set.add(i * 100);
         }
+        for (int i: set) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        list.addAll(set);
+        list.print();
 
-        list.addAll(-1,set);
+        int [] arr = new int[]{0,1,2,3,100,200};
+        int i = 5;
+        ListIterator<Integer> iterator = list.listIterator(list.size());
+        while (iterator.hasPrevious()){
+            Assert.assertEquals(arr[i], (int) iterator.previous());
+            i--;
+        }
+    }
+
+    @Test
+    public void addAllTest2(){
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            list.add(i);
+        }
+
+        list.print();
+        System.out.println();
+
+        Set<Integer> set = new HashSet<>();
+
+        list.addAll(set);
+        list.print();
+
+        int [] arr = new int[]{0,1,2,3};
+        int i = 3;
+        ListIterator<Integer> iterator = list.listIterator(list.size());
+        while (iterator.hasPrevious()){
+            Assert.assertEquals(arr[i], (int) iterator.previous());
+            i--;
+        }
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void addAllTest3(){
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            list.add(i);
+        }
+
+        list.print();
+        System.out.println();
+
+        Set<Integer> set = null;
+
+        list.addAll(set);
     }
 
 }

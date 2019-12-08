@@ -62,7 +62,6 @@ public class MyLinkedList<E>
 
     public boolean addAll(int index, Collection<? extends E> c) {
         checkIndex(index);
-
         Object[] a = c.toArray();
         int numNew = a.length;
         if (numNew == 0)
