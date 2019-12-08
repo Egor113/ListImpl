@@ -122,32 +122,20 @@ public class MyLinkedList<E>
         }
     }
 
-    public ListIterator<E> listIterator(boolean isFromFirst){
-        return new ListItr(isFromFirst);
+    @Override
+    public ListIterator<E> listIterator(int index){
+        return new ListItr(index);
     }
 
     private class ListItr implements ListIterator<E>{
 
-        private Node<E> directCurrent;
-        private Node<E> reverseCurrent;
+        private Node<E> lastReturned;
         private Node<E> next;
-        private Node<E> last;
         private int nextIndex;
-        private int lastIndex;
 
-        ListItr(boolean isFromFirst) {
-            Node<E> myFirst = MyLinkedList.this.first;
-            Node<E> myLast = MyLinkedList.this.last;
-
-            if (isFromFirst){
-                this.directCurrent = myFirst;
-                this.next = myFirst.next;
-                this.nextIndex = 0;
-            } else {
-                this.reverseCurrent = myLast;
-                this.last = myLast;
-                this.lastIndex = size-1;
-            }
+        ListItr(int index) {
+            next = (index == size) ? null : node(index);
+            nextIndex = index;
         }
 
         @Override
@@ -160,15 +148,15 @@ public class MyLinkedList<E>
             if (!hasNext()){
                 throw new NoSuchElementException();
             }
-            reverseCurrent = next;
+            lastReturned = next;
             next = next.next;
             nextIndex ++;
-            return reverseCurrent.item;
+            return lastReturned.item;
         }
 
         @Override
         public boolean hasPrevious() {
-            return lastIndex >= 0;
+            return nextIndex > 0;
         }
 
         @Override
@@ -176,10 +164,9 @@ public class MyLinkedList<E>
             if (!hasPrevious()){
                 throw new NoSuchElementException();
             }
-            directCurrent = last;
-            last = last.prev;
-            lastIndex--;
-            return directCurrent.item;
+            lastReturned = next = (next == null) ? last : next.prev;
+            nextIndex--;
+            return lastReturned.item;
         }
 
         @Override
@@ -238,12 +225,7 @@ public class MyLinkedList<E>
     }
 
     @Override
-    public ListIterator<E> listIterator(int index) {
-        return null;
-    }
-
-    @Override
     public int size() {
-        return 0;
+        return size;
     }
 }

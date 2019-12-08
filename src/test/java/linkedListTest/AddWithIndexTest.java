@@ -13,17 +13,17 @@ public class AddWithIndexTest {
         list.add(1);
         list.add(2);
 
-//        ListIterator<Integer> iterator = list.listIterator(false);
-//        while (iterator.hasPrevious()){
-//            System.out.print(iterator.previous() + " ");
-//        }
+        ListIterator<Integer> iterator = list.listIterator(list.size());
+        while (iterator.hasPrevious()){
+            System.out.print(iterator.previous() + " ");
+        }
 
         System.out.println();
         list.add(0,100);
 
-        ListIterator<Integer> iterator = list.listIterator(false);
-        while (iterator.hasPrevious()){
-            System.out.print(iterator.previous() + " ");
+        ListIterator<Integer> iterator2 = list.listIterator(list.size());
+        while (iterator2.hasPrevious()){
+            System.out.print(iterator2.previous() + " ");
         }
 
     }
