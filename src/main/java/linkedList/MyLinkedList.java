@@ -36,15 +36,14 @@ public class MyLinkedList<E>
         size++;
     }
 
-    void linkBefore(E e, Node<E> succ) {
-        // assert succ != null;
-        final Node<E> pred = succ.prev;
-        final Node<E> newNode = new Node<>(pred, e, succ);
-        succ.prev = newNode;
-        if (pred == null)
-            first = newNode;
-        else
-            pred.next = newNode;
+    void linkBefore(int index, E e){
+
+        final Node<E> currentNode = node(index);
+        final Node<E> newNode  = new Node<>(currentNode.prev, e, currentNode);
+        if (newNode.prev != null){
+            newNode.prev.next = newNode;
+        }
+        newNode.next.prev = newNode;
         size++;
     }
 
@@ -105,7 +104,7 @@ public class MyLinkedList<E>
         if (index == size)
             linkLast(element);
         else
-            linkBefore(element, node(index));
+            linkBefore(index, element);
     }
 
     Node<E> node(int index) {
