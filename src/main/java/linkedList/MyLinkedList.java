@@ -47,6 +47,32 @@ public class MyLinkedList<E>
         size++;
     }
 
+    private E unlinkLast(Node<E> l){
+        final Node<E> prevNode = l.prev;
+        prevNode.next = last;
+        last = prevNode;
+        size --;
+        return l.item;
+    }
+
+    private E unlinkFirst(Node<E> f){
+        final Node<E> nextNode = f.next;
+        nextNode.prev = null;
+        first = nextNode;
+        size --;
+        return f.item;
+    }
+
+    E unlink(Node<E> x){
+        final Node<E> prevNode = x.prev;
+        final Node<E> nextNode = x.next;
+
+        prevNode.next = x.next;
+        nextNode.prev = x.prev;
+        size --;
+        return x.item;
+    }
+
     public void addFirst(E e) {
         linkFirst(e);
     }
@@ -105,6 +131,18 @@ public class MyLinkedList<E>
         else
             linkBefore(index, element);
     }
+
+    public E remove(int index){
+        checkIndex(index);
+        if (index == size){
+            return unlinkLast(node(index));
+        } else if (index == 0){
+            return unlinkFirst(node(index));
+        } else {
+            return unlink(node(index));
+        }
+    }
+
 
     Node<E> node(int index) {
 
