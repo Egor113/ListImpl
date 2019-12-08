@@ -28,6 +28,16 @@ public class MyLinkedList<E>
         return true;
     }
 
+    public void add(int index, E element){
+        checkIndex(index);
+        if (index == size){
+            linkLast(element);
+        }
+        else {
+            linkBefore(element, node(index));
+        }
+    }
+
     void linkLast(E e){
         final Node<E> l = last;
         final Node<E> newNode = new Node<>(l, e, null);
@@ -36,6 +46,19 @@ public class MyLinkedList<E>
             first = newNode;
         } else {
             l.next = newNode;
+        }
+        size++;
+    }
+
+    void linkBefore(E e, Node<E> succ){
+
+        final Node<E> pred = succ.prev;
+        final Node<E> newNode = new Node<>(pred, e, succ);
+        succ.prev = newNode;
+        if (pred == null){
+            first = newNode;
+        } else {
+            pred.next = newNode;
         }
         size++;
     }
@@ -52,16 +75,15 @@ public class MyLinkedList<E>
     }
 
     public E get(int index){
-        int currentIndex = 0;
-        Node<E> currentNode = first;
-        while (currentNode.next != null){
-            currentNode = currentNode.next;
-            if (currentIndex == index){
-                return currentNode.item;
-            }
-            currentIndex++;
+        checkIndex(index);
+        return node(index).item;
+    }
+
+    public void checkIndex(int index){
+        if (index < 0 || index >= size){
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
         }
-        return null;
     }
 
     public Iterator<E> iterator (){return new Itr();}
@@ -183,6 +205,23 @@ public class MyLinkedList<E>
         @Override
         public void add(E e) {
 
+        }
+    }
+
+    Node<E> node (int index){
+
+        if (index < (size >> 1)){
+            Node<E> x = first;
+            for (int i = 0; i < index; i++){
+                x = x.next;
+            }
+            return x;
+        } else {
+            Node<E> x = last;
+            for (int i = size - 1; i < index; i--) {
+                x= x.prev;
+            }
+            return x;
         }
     }
 
