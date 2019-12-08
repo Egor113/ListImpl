@@ -1,9 +1,6 @@
 package linkedList;
 
-import java.util.AbstractSequentialList;
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class MyLinkedList<E>
         extends AbstractSequentialList<E> {
@@ -36,6 +33,52 @@ public class MyLinkedList<E>
         else {
             linkBefore(element, node(index));
         }
+    }
+
+    public boolean addAll(Collection<? extends E> c){
+        return addAll(size, c);
+    }
+
+    public boolean addAll(int index, Collection<? extends E> c){
+        checkIndex(index);
+        if (c == null){
+            throw new NullPointerException();
+        }
+
+        Object[] array = c.toArray(new Object[c.size()]);
+        int numNew = array.length;
+        if (numNew == 0){
+            return false;
+        }
+
+        Node<E> pred, succ;
+        if (index == size) {
+            succ = null;
+            pred = last;
+        } else {
+            succ = node(index);
+            pred = succ.prev;
+        }
+
+        for (Object o: array) {
+            E e = (E) o;
+            Node<E> newNode = new Node<>(pred, e, null);
+            if (pred == null){
+                first = newNode;
+            }
+            else {
+                pred.next = newNode;
+            }
+        }
+
+        if (succ == null) {
+            last = pred;
+        } else {
+            pred.next = succ;
+            succ.prev = pred;
+        }
+        size += numNew;
+        return true;
     }
 
     void linkLast(E e){
@@ -80,7 +123,7 @@ public class MyLinkedList<E>
     }
 
     public void checkIndex(int index){
-        if (index < 0 || index >= size){
+        if (index < 0 || index > size){
             throw new IndexOutOfBoundsException
                     ("Index: " + index + ", Size: " + size);
         }
@@ -161,9 +204,9 @@ public class MyLinkedList<E>
 
         @Override
         public E previous() {
-            if (!hasPrevious()){
+            if (!hasPrevious())
                 throw new NoSuchElementException();
-            }
+
             lastReturned = next = (next == null) ? last : next.prev;
             nextIndex--;
             return lastReturned.item;
@@ -228,4 +271,12 @@ public class MyLinkedList<E>
     public int size() {
         return size;
     }
+
+    public void print(){
+        ListIterator<E> iterator = listIterator(0);
+        while (iterator.hasPrevious()){
+            System.out.print(iterator.previous() + " ");
+        }
+    }
+
 }
