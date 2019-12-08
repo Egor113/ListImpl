@@ -47,22 +47,6 @@ public class MyLinkedList<E>
         size++;
     }
 
-    private E unlinkLast(Node<E> l){
-        final Node<E> prevNode = l.prev;
-        prevNode.next = last;
-        last = prevNode;
-        size --;
-        return l.item;
-    }
-
-    private E unlinkFirst(Node<E> f){
-        final Node<E> nextNode = f.next;
-        nextNode.prev = null;
-        first = nextNode;
-        size --;
-        return f.item;
-    }
-
     E unlink(Node<E> x){
         final E element = x.item;
         final Node<E> next = x.next;
@@ -155,6 +139,19 @@ public class MyLinkedList<E>
 
         size += numNew;
         return true;
+    }
+
+    public void clear(){
+
+        for (Node<E> x = first; x != null; ) {
+            Node<E> next = x.next;
+            x.item = null;
+            x.next = null;
+            x.prev = null;
+            x = next;
+        }
+        first = last = null;
+        size = 0;
     }
 
     public void add(int index, E element) {
@@ -306,7 +303,6 @@ public class MyLinkedList<E>
 
         }
     }
-
 
     private static class Node<E> {
         E item;
