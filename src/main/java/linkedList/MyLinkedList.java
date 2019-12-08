@@ -64,13 +64,28 @@ public class MyLinkedList<E>
     }
 
     E unlink(Node<E> x){
-        final Node<E> prevNode = x.prev;
-        final Node<E> nextNode = x.next;
+        final E element = x.item;
+        final Node<E> next = x.next;
+        final Node<E> prev = x.prev;
 
-        prevNode.next = x.next;
-        nextNode.prev = x.prev;
-        size --;
-        return x.item;
+        if (prev == null) {
+            first = next;
+        } else {
+            prev.next = next;
+            x.prev = null;
+        }
+
+        if (next == null) {
+            last = prev;
+        } else {
+            next.prev = prev;
+            x.next = null;
+        }
+
+        x.item = null;
+        size--;
+        modCount++;
+        return element;
     }
 
     public void addFirst(E e) {
@@ -80,6 +95,25 @@ public class MyLinkedList<E>
     public boolean add(E e) {
         linkLast(e);
         return true;
+    }
+
+    public boolean remove(Object o){
+        if (o == null) {
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (x.item == null) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        } else {
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (o.equals(x.item)) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean addAll(Collection<? extends E> c) {
@@ -134,15 +168,8 @@ public class MyLinkedList<E>
 
     public E remove(int index){
         checkIndex(index);
-        if (index == size){
-            return unlinkLast(node(index));
-        } else if (index == 0){
-            return unlinkFirst(node(index));
-        } else {
-            return unlink(node(index));
-        }
+        return unlink(node(index));
     }
-
 
     Node<E> node(int index) {
 
