@@ -1,0 +1,14 @@
+    Node<E> node(int index) {
+        Node<E> foundNode, current = first.next;
+        foundNode = first.next;
+        int currentIndex = 0;
+
+        while (current.next != null){
+            current = current.next;
+            if(currentIndex == index){
+                foundNode = current;
+            }
+            currentIndex++;
+        }
+        return foundNode;
+    }
