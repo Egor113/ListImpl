@@ -4,6 +4,9 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class AddTest {
 
     @Test
@@ -14,10 +17,12 @@ public class AddTest {
             list.add(Integer.toString(i));
         }
 
-        list.printArray();
-        Assert.assertArrayEquals(new Object[]
-                        {"1","2","3","4","5","6",null,null},
-                list.getElementData());
+        ArrayList<String> testList = new ArrayList<>(Arrays.
+                asList("1","2","3","4","5","6"));
+
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(testList.get(i),list.get(i));
+        }
     }
 
     @Test
@@ -28,7 +33,8 @@ public class AddTest {
         list.add(null);
 
         list.printArray();
-        Assert.assertArrayEquals(new Object[]{"1",null},list.getElementData());
+        Assert.assertEquals("1",list.get(0));
+        Assert.assertNull(list.get(1));
     }
 
     @Test(expected = IllegalArgumentException.class)

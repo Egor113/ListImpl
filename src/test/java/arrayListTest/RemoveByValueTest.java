@@ -4,6 +4,9 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class RemoveByValueTest {
 
     @Test
@@ -15,8 +18,14 @@ public class RemoveByValueTest {
         list.printArray();
 
         list.remove("3");
-        Assert.assertArrayEquals(new Object[]{"1","2","4",null},
-                list.getElementData());
+
+        ArrayList<String> testList = new ArrayList<>(Arrays.
+                asList("1","2","4"));
+
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(testList.get(i),list.get(i));
+        }
+
         list.printArray();
     }
 
@@ -38,8 +47,14 @@ public class RemoveByValueTest {
             list.add(Integer.toString(i));
         }
         list.printArray();
-        Assert.assertArrayEquals(new Object[]{"1","2","3","4"},
-                list.getElementData());
+
+        ArrayList<String> testList = new ArrayList<>(Arrays.
+                asList("1","2","3","4"));
+
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(testList.get(i),list.get(i));
+        }
+
         list.printArray();
     }
 }

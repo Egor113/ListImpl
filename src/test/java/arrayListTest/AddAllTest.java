@@ -30,7 +30,7 @@ public class AddAllTest {
         System.out.println();
         list.addAll(set);
         ArrayList<String> test = new ArrayList<>(Arrays.
-                asList("1","2","3","4","100","200","300",null,null,null,null));
+                asList("1","2","3","4","100","200","300"));
 
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(test.get(i),list.get(i));
@@ -58,7 +58,7 @@ public class AddAllTest {
 
         list.addAll(set);
 
-        ArrayList<String> test = new ArrayList<>(Arrays.asList("1","2","3","4",null));
+        ArrayList<String> test = new ArrayList<>(Arrays.asList("1","2","3","4"));
 
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(test.get(i),list.get(i));

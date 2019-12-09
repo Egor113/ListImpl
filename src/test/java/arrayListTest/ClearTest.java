@@ -4,6 +4,9 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ClearTest {
 
     @Test
@@ -15,9 +18,9 @@ public class ClearTest {
         list.printArray();
 
         list.clear();
-        Assert.assertArrayEquals(new Object[]
-                        {null,null,null,null,null,null,null,null},
-                list.getElementData());
+
+        Assert.assertEquals(0, list.size());
+
         list.printArray();
     }
 

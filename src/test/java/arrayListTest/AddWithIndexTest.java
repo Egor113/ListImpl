@@ -4,6 +4,9 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class AddWithIndexTest {
 
     @Test
@@ -17,9 +20,13 @@ public class AddWithIndexTest {
         list.printArray();
         list.add(2,"100");
 
-        Assert.assertArrayEquals(new Object[]
-                        {"1","2","100","3","4","5","6","7"},
-                list.getElementData());
+        ArrayList<String> testList = new ArrayList<>(Arrays.
+                asList("1","2","100","3","4","5","6","7"));
+
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(testList.get(i),list.get(i));
+        }
+
         list.printArray();
     }
 
@@ -34,8 +41,13 @@ public class AddWithIndexTest {
         list.printArray();
         list.add(1,null);
 
-        Assert.assertArrayEquals(new Object[]{"1",null,"2","3",null},
-                list.getElementData());
+        ArrayList<String> testList = new ArrayList<>(Arrays.
+                asList("1",null,"2","3"));
+
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(testList.get(i),list.get(i));
+        }
+
         list.printArray();
     }
 

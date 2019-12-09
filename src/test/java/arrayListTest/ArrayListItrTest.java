@@ -4,6 +4,8 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -38,8 +40,9 @@ public class ArrayListItrTest {
             iterator.next();
             iterator.remove();
         }
-        Assert.assertArrayEquals(new Object[]{null,null,null,null},
-                list.getElementData());
+
+        Assert.assertEquals(0, list.size());
+
         list.printArray();
     }
 
