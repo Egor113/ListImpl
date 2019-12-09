@@ -103,7 +103,24 @@ public class MyLinkedList<E>
     }
 
     public E remove(int index){
-        return null;
+        checkIndex(index);
+        Node<E> deleteNode = node(index);
+        E value = deleteNode.item;
+        if (index == 0) {
+            deleteNode.next.prev = first;
+            first = deleteNode.next;
+            deleteNode = null;
+        } else if (index == size){
+            last = deleteNode.prev;
+            deleteNode.prev.next = last;
+            deleteNode = null;
+        } else {
+            deleteNode.prev.next = deleteNode.next;
+            deleteNode.next.prev = deleteNode.prev;
+            deleteNode = null;
+        }
+        size--;
+        return value;
     }
 
     Node<E> node(int index) {
