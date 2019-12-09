@@ -81,7 +81,18 @@ public class MyLinkedList<E>
     }
 
     public void add(int index, E element) {
-
+        checkIndex(index);
+        Node<E> current = node(index-1);
+        if (index == 0){
+            addFirst(element);
+        } else if (index == size){
+            addLast(element);
+        } else {
+            final Node<E> newNode = new Node<>(current, element, current.next);
+            current.next.prev = newNode;
+            current.next = newNode;
+            size++;
+        }
     }
 
     public E remove(int index){
