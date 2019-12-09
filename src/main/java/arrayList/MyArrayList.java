@@ -43,7 +43,6 @@ public class MyArrayList<E> extends AbstractList<E>{
             throw new IllegalArgumentException("Illegal Capacity: "+
                     initialCapacity);
         }
-
     }
 
     private void checkCapacity() {
@@ -100,22 +99,18 @@ public class MyArrayList<E> extends AbstractList<E>{
         }
         increaseCapacityForCollection(size + c.size());
         Object[] collectionArray = c.toArray(new Object[c.size()]);
-        Object[] afterInsertBuffer = new Object[size-index];
-        System.arraycopy(elementData,index,
-                afterInsertBuffer,0,afterInsertBuffer.length);
+        System.arraycopy(elementData, index, elementData,
+                index + collectionArray.length, size-index);
         System.arraycopy(collectionArray,0,elementData,
                 index,collectionArray.length);
-        System.arraycopy(afterInsertBuffer,0,elementData,
-                index+collectionArray.length,afterInsertBuffer.length);
+
         size += collectionArray.length;
         return true;
     }
 
     private void removeByIndex(int index){
-        Object[] afterRemoveBuffer = new Object[size-index-1];
-        System.arraycopy(elementData,index+1,
-                afterRemoveBuffer,0,afterRemoveBuffer.length);
-        System.arraycopy(afterRemoveBuffer,0,elementData,index,afterRemoveBuffer.length);
+        System.arraycopy(elementData,index + 1, elementData,
+                index, size-index-1);
         elementData[--size] = null;
     }
 
