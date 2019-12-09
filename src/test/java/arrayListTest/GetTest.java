@@ -1,6 +1,7 @@
 package arrayListTest;
 
 import arrayList.MyArrayList;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class GetTest {
@@ -10,7 +11,7 @@ public class GetTest {
 
         MyArrayList<String> list = new MyArrayList<>(5);
         list.add("1");
-        list.get(0);
+        Assert.assertEquals("1",list.get(0));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)

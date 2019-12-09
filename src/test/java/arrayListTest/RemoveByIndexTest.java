@@ -30,8 +30,17 @@ public class RemoveByIndexTest {
         list.remove(-1);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void removeByIndexTest3(){
+        MyArrayList<String> list = new MyArrayList<>(5);
+        for (int i = 1; i <= 6; i++) {
+            list.add(Integer.toString(i));
+        }
+        list.remove(100);
+    }
+
+    @Test
+    public void removeByIndexTest4(){
         MyArrayList<String> list = new MyArrayList<>(1);
         list.add("1");
         list.printArray();
