@@ -114,7 +114,18 @@ public class MyLinkedList<E>
     }
 
     public void clear(){
+        Node<E> current = last;
+        Node<E> deleteNode;
 
+        while (current != null){
+            deleteNode = current;
+            current = current.prev;
+            deleteNode.item = null;
+            deleteNode.prev = null;
+            deleteNode.next = null;
+        }
+        first = last = null;
+        size = 0;
     }
 
     public void add(int index, E element) {
