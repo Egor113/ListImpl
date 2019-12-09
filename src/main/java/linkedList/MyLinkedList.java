@@ -69,11 +69,18 @@ public class MyLinkedList<E>
     }
 
     public boolean addAll(Collection<? extends E> c) {
-        return false;
+        return addAll(size, c);
     }
 
     public boolean addAll(int index, Collection<? extends E> c) {
-        return false;
+
+        Object[] arr = c.toArray();
+
+        for (int i = c.size()-1; i >= 0 ; i--) {
+            add(index, (E) arr[i]);
+        }
+
+        return arr.length > 0;
     }
 
     public void clear(){
