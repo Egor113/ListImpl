@@ -70,29 +70,32 @@ public class MyLinkedList<E>
 
         while (current != null){
             if(current.item.equals(o)){
-                checkIndex(currentIndex);
-                Node<E> deleteNode = node(currentIndex);
-                E value = deleteNode.item;
-                if (currentIndex == 0) {
-                    deleteNode.next.prev = first;
-                    first = deleteNode.next;
-                    deleteNode = null;
-                } else if (currentIndex == size-1){
-                    last = deleteNode.prev;
-                    deleteNode.prev.next = last;
-                    deleteNode = null;
-                } else {
-                    deleteNode.prev.next = deleteNode.next;
-                    deleteNode.next.prev = deleteNode.prev;
-                    deleteNode = null;
-                }
-                size--;
+                removeByIndexAndValue(currentIndex);
                 return true;
             }
             current = current.prev;
             currentIndex--;
         }
         return false;
+    }
+
+    private void removeByIndexAndValue(int index){
+        checkIndex(index);
+        Node<E> deleteNode = node(index);
+        if (index == 0) {
+            deleteNode.next.prev = first;
+            first = deleteNode.next;
+            deleteNode = null;
+        } else if (index == size - 1){
+            last = deleteNode.prev;
+            deleteNode.prev.next = last;
+            deleteNode = null;
+        } else {
+            deleteNode.prev.next = deleteNode.next;
+            deleteNode.next.prev = deleteNode.prev;
+            deleteNode = null;
+        }
+        size--;
     }
 
     public boolean addAll(Collection<? extends E> c) {
