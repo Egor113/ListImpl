@@ -4,6 +4,8 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,10 +29,12 @@ public class AddAllTest {
         }
         System.out.println();
         list.addAll(set);
+        ArrayList<String> test = new ArrayList<>(Arrays.
+                asList("1","2","3","4","100","200","300",null,null,null,null));
 
-        Assert.assertArrayEquals(new Object[]
-                        {"1","2","3","4","100","200","300",null,null,null,null},
-                list.getElementData());
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(test.get(i),list.get(i));
+        }
 
         list.printArray();
     }
@@ -54,9 +58,12 @@ public class AddAllTest {
 
         list.addAll(set);
 
-        Assert.assertArrayEquals(new Object[]
-                        {"1","2","3","4",null},
-                list.getElementData());
+        ArrayList<String> test = new ArrayList<>(Arrays.asList("1","2","3","4",null));
+
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(test.get(i),list.get(i));
+        }
+
 
         list.printArray();
     }
