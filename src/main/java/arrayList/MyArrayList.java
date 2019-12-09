@@ -2,6 +2,26 @@ package arrayList;
 
 import java.util.*;
 
+//1) Если вызвать get у пустого листа, твой отдает null, неправильно, по моему.
+// Все таки ожидаю IndexOutOfBoundsException
+// 2) Когда я удаляю несуществующий элемент, тоже хотелось бы видеть IndexOutOfBoundsException
+// 3) Почему я не могу создать список нулевой длины?
+// 4) getElementData - что за метод и зачем он нужен? Ты даешь доступ к массиву,
+// который лежит в основе списка, по моему реализация должна быть полностью скрыта.
+// 5) Мне не нравится добавление и удаление элемент по индексу(add, addAll, removeByIndex).
+// Не вижу вообще никакого смысла копировать 2 раза.
+// 5.5) От метода removeByIndex вообще глаза заболели.
+// 6) (Это 83 строка) Object[] collectionArray = c.toArray(new Object[c.size()]);
+// Часть с new Object[c.size()] я вообще не понял нифига.
+// 7) (86 строка) Советую присматриваться к советам ide, например:
+// if (collectionArray.length > 0) return true;
+// else return false;
+// элегантно превращается в
+// return collectionArray.length > 0;
+// 8) Вообще, зачем тебе два метода: removeByIndex и remove?
+// 9) Слишком много лишнего в тестах, убери все принтлны и вообще все что не относится к assert`у.
+
+
 public class MyArrayList<E> extends AbstractList<E>{
 
     private static final int DEFAULT_CAPACITY = 10;
@@ -62,7 +82,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public void add(int index, E element){
-        checkIndex(index);
+        checkIndexAdd(index);
         checkCapacity();
         Object[] afterInsertBuffer = new Object[size-index];
         System.arraycopy(elementData,index,
@@ -86,7 +106,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public boolean addAll(int index, Collection<? extends E> c){
-        checkIndex(index);
+        checkIndexAdd(index);
         if (c == null){
             throw new NullPointerException();
         }
@@ -112,7 +132,10 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public E remove(int index){
-        checkIndex(index);
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
+        }
         E element = get(index);
         removeByIndex(index);
         return element;
@@ -203,7 +226,7 @@ public class MyArrayList<E> extends AbstractList<E>{
         return (E) elementData[index];
     }
 
-    private void checkIndex(int index){
+    private void checkIndexAdd(int index){
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException
                     ("Index: " + index + ", Size: " + size);

@@ -11,7 +11,8 @@ public class ArrayListMain {
 //        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1, null, 3,4, 5));
 
         ArrayList<Integer> list2 = new ArrayList<>();
-        list2.add(0,1);
+        list2.add(1);
+        list2.remove(1);
 
 
     }
