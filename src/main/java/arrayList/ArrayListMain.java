@@ -8,10 +8,10 @@ public class ArrayListMain {
     public static void main(String[] args) {
 
         //Тестовый класс, на катором я проверял, как ведет себя реальный ArrayList
-        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1, null, 3,4, 5));
+//        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1, null, 3,4, 5));
 
-        ArrayList<Integer> list2 = new ArrayList<>(Arrays.asList(12,10));
-        list.removeAll(list2);
+        ArrayList<Integer> list2 = new ArrayList<>();
+        list2.add(0,1);
 
 
     }

@@ -62,10 +62,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public void add(int index, E element){
-        if (index < 0 || index > size){
-            throw new IndexOutOfBoundsException
-                    ("Index: " + index + ", Size: " + size);
-        }
+        checkIndex(index);
         checkCapacity();
         Object[] afterInsertBuffer = new Object[size-index];
         System.arraycopy(elementData,index,
@@ -89,10 +86,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public boolean addAll(int index, Collection<? extends E> c){
-        if (index < 0 || index > size){
-            throw new IndexOutOfBoundsException
-                    ("Index: " + index + ", Size: " + size);
-        }
+        checkIndex(index);
         if (c == null){
             throw new NullPointerException();
         }
@@ -118,10 +112,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public E remove(int index){
-        if (index < 0 || index > size){
-            throw new IndexOutOfBoundsException
-                    ("Index: " + index + ", Size: " + size);
-        }
+        checkIndex(index);
         E element = get(index);
         removeByIndex(index);
         return element;
@@ -205,11 +196,18 @@ public class MyArrayList<E> extends AbstractList<E>{
 
     @Override
     public E get(int index) {
-        if (index < 0 || index > size){
+        if (index < 0 || index >= size || size == 0){
             throw new IndexOutOfBoundsException
                     ("Index: " + index + ", Size: " + size);
         }
         return (E) elementData[index];
+    }
+
+    private void checkIndex(int index){
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
+        }
     }
 
     @Override

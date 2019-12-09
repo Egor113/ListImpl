@@ -13,22 +13,6 @@ public class MyLinkedList<E>
 
     public MyLinkedList() {}
 
-    private void linkFirst(E e) {
-
-    }
-
-    void linkLast(E e) {
-
-    }
-
-    void linkBefore(int index, E e){
-
-    }
-
-    E unlink(Node<E> x){
-        return null;
-    }
-
     public void addFirst(E e) {
         if (size == 0) {
             final Node<E> newElement = new Node<>(last, e, first);
