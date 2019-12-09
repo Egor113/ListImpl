@@ -30,7 +30,18 @@ public class MyLinkedList<E>
     }
 
     public void addFirst(E e) {
-
+        if (size == 0) {
+            final Node<E> newElement = new Node<>(last, e, first);
+            last = first = newElement;
+            size ++;
+        }
+        else {
+            final Node<E> firstElement = first;
+            final Node<E> newElement = new Node<>(null, e, firstElement);
+            first = newElement;
+            firstElement.prev = newElement;
+            size++;
+        }
     }
 
     public void addLast(E e) {
@@ -78,7 +89,18 @@ public class MyLinkedList<E>
     }
 
     Node<E> node(int index) {
-        return null;
+        Node<E> foundNode, current = last;
+        foundNode = last;
+        int currentIndex = size-1;
+
+        while (current != null){
+            if(currentIndex == index){
+                foundNode = current;
+            }
+            current = current.prev;
+            currentIndex--;
+        }
+        return foundNode;
     }
 
     public E get(int index){
@@ -86,8 +108,11 @@ public class MyLinkedList<E>
         return node(index).item;
     }
 
-    public void checkIndex(int index){
-
+    private void checkIndex(int index){
+        if (index < 0 || index > size){
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
+        }
     }
 
 

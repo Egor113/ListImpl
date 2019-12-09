@@ -22,7 +22,6 @@ public class AddLastTest {
             Assert.assertEquals(i, (int) iterator.previous());
             i--;
         }
-
     }
 
     @Test
@@ -37,7 +36,6 @@ public class AddLastTest {
         Assert.assertEquals(1, (int) list.get(0));
         Assert.assertNull(list.get(1));
         Assert.assertEquals(3, (int) list.get(2));
-
     }
 
 
