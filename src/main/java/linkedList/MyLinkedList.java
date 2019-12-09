@@ -11,176 +11,74 @@ public class MyLinkedList<E>
 
     Node<E> last;
 
-    public MyLinkedList() {
-    }
+    public MyLinkedList() {}
 
     private void linkFirst(E e) {
-        final Node<E> f = first;
-        final Node<E> newNode = new Node<>(null, e, f);
-        first = newNode;
-        if (f == null)
-            last = newNode;
-        else
-            f.prev = newNode;
-        size++;
+
     }
 
     void linkLast(E e) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<>(l, e, null);
-        last = newNode;
-        if (l == null)
-            first = newNode;
-        else
-            l.next = newNode;
-        size++;
+
     }
 
     void linkBefore(int index, E e){
 
-        final Node<E> currentNode = node(index);
-        final Node<E> newNode  = new Node<>(currentNode.prev, e, currentNode);
-        if (newNode.prev != null){
-            newNode.prev.next = newNode;
-        }
-        newNode.next.prev = newNode;
-        size++;
     }
 
     E unlink(Node<E> x){
-        final E element = x.item;
-        final Node<E> next = x.next;
-        final Node<E> prev = x.prev;
-
-        if (prev == null) {
-            first = next;
-        } else {
-            prev.next = next;
-            x.prev = null;
-        }
-
-        if (next == null) {
-            last = prev;
-        } else {
-            next.prev = prev;
-            x.next = null;
-        }
-
-        x.item = null;
-        size--;
-        modCount++;
-        return element;
+        return null;
     }
 
     public void addFirst(E e) {
-        linkFirst(e);
+
+    }
+
+    public void addLast(E e) {
+        if (size == 0) {
+            final Node<E> newElement = new Node<>(last, e, first);
+            last = first = newElement;
+            size ++;
+        }
+        else {
+            final Node<E> lastElement = last;
+            final Node<E> newElement = new Node<>(lastElement, e, null);
+            last = newElement;
+            lastElement.next = newElement;
+            size++;
+        }
     }
 
     public boolean add(E e) {
-        linkLast(e);
+        addLast(e);
         return true;
     }
 
     public boolean remove(Object o){
-        if (o == null) {
-            for (Node<E> x = first; x != null; x = x.next) {
-                if (x.item == null) {
-                    unlink(x);
-                    return true;
-                }
-            }
-        } else {
-            for (Node<E> x = first; x != null; x = x.next) {
-                if (o.equals(x.item)) {
-                    unlink(x);
-                    return true;
-                }
-            }
-        }
         return false;
     }
 
     public boolean addAll(Collection<? extends E> c) {
-        return addAll(size, c);
+        return false;
     }
 
     public boolean addAll(int index, Collection<? extends E> c) {
-        checkIndex(index);
-        Object[] a = c.toArray();
-        int numNew = a.length;
-        if (numNew == 0)
-            return false;
-
-        Node<E> pred, succ;
-        if (index == size) {
-            succ = null;
-            pred = last;
-        } else {
-            succ = node(index);
-            pred = succ.prev;
-        }
-
-        for (Object o : a) {
-            E e = (E) o;
-            Node<E> newNode = new Node<>(pred, e, null);
-            if (pred == null)
-                first = newNode;
-            else
-                pred.next = newNode;
-            pred = newNode;
-        }
-
-        if (succ == null) {
-            last = pred;
-        } else {
-            pred.next = succ;
-            succ.prev = pred;
-        }
-
-        size += numNew;
-        return true;
+        return false;
     }
 
     public void clear(){
 
-        for (Node<E> x = first; x != null; ) {
-            Node<E> next = x.next;
-            x.item = null;
-            x.next = null;
-            x.prev = null;
-            x = next;
-        }
-        first = last = null;
-        size = 0;
     }
 
     public void add(int index, E element) {
-        checkIndex(index);
 
-        if (index == size)
-            linkLast(element);
-        else
-            linkBefore(index, element);
     }
 
     public E remove(int index){
-        checkIndex(index);
-        return unlink(node(index));
+        return null;
     }
 
     Node<E> node(int index) {
-
-        if (index < (size >> 1)) {
-            Node<E> x = first;
-            for (int i = 0; i < index; i++)
-                x = x.next;
-            return x;
-        } else {
-            Node<E> x = last;
-            for (int i = size - 1; i > index; i--)
-                x = x.prev;
-            return x;
-        }
+        return null;
     }
 
     public E get(int index){
@@ -189,47 +87,9 @@ public class MyLinkedList<E>
     }
 
     public void checkIndex(int index){
-        if (index < 0 || index > size){
-            throw new IndexOutOfBoundsException
-                    ("Index: " + index + ", Size: " + size);
-        }
+
     }
 
-    public Iterator<E> iterator (){return new Itr();}
-
-    private class Itr implements Iterator<E>{
-
-        private Node<E> lastReturned;
-        private Node<E> next;
-        private int nextIndex;
-
-        Itr() {
-            this.lastReturned = first;
-            this.next = first.next;
-            this.nextIndex = 0;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return nextIndex < size;
-        }
-
-        @Override
-        public E next() {
-            if (nextIndex >= size){
-                throw new NoSuchElementException();
-            }
-            lastReturned = next;
-            next = next.next;
-            nextIndex ++;
-            return lastReturned.item;
-        }
-
-        @Override
-        public void remove() {
-
-        }
-    }
 
     @Override
     public ListIterator<E> listIterator(int index){

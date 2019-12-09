@@ -1,10 +1,7 @@
 package linkedListTest;
 
 import linkedList.MyLinkedList;
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ListIterator;
 
 public class ClearTest {
 
