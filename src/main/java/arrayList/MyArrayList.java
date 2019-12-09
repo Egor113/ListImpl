@@ -2,21 +2,6 @@ package arrayList;
 
 import java.util.*;
 
-// 5) Мне не нравится добавление и удаление элемент по индексу(add, addAll, removeByIndex).
-// Не вижу вообще никакого смысла копировать 2 раза.
-// 5.5) От метода removeByIndex вообще глаза заболели.
-// 6) (Это 83 строка) Object[] collectionArray = c.toArray(new Object[c.size()]);
-// Часть с new Object[c.size()] я вообще не понял нифига.
-// 7) (86 строка) Советую присматриваться к советам ide, например:
-// if (collectionArray.length > 0) return true;
-// else return false;
-// элегантно превращается в
-// return collectionArray.length > 0;
-// 8) Вообще, зачем тебе два метода: removeByIndex и remove?
-// 9) Слишком много лишнего в тестах, +
-// убери все принтлны и вообще все что не относится к assert`у.
-
-
 public class MyArrayList<E> extends AbstractList<E>{
 
     private static final int DEFAULT_CAPACITY = 10;
@@ -84,11 +69,10 @@ public class MyArrayList<E> extends AbstractList<E>{
             throw new NullPointerException();
         }
         increaseCapacityForCollection(size + c.size());
-        Object[] collectionArray = c.toArray(new Object[c.size()]);
+        Object[] collectionArray = c.toArray();
         System.arraycopy(collectionArray,0,elementData,size,collectionArray.length);
         size += collectionArray.length;
-        if (collectionArray.length > 0) return true;
-        else return false;
+        return collectionArray.length > 0;
 
     }
 
@@ -98,7 +82,7 @@ public class MyArrayList<E> extends AbstractList<E>{
             throw new NullPointerException();
         }
         increaseCapacityForCollection(size + c.size());
-        Object[] collectionArray = c.toArray(new Object[c.size()]);
+        Object[] collectionArray = c.toArray();
         System.arraycopy(elementData, index, elementData,
                 index + collectionArray.length, size-index);
         System.arraycopy(collectionArray,0,elementData,
