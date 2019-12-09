@@ -12,7 +12,7 @@ public class AddTest {
     @Test
     public void addTest1(){
 
-        MyArrayList<String> list = new MyArrayList<>(5);
+        MyArrayList<String> list = new MyArrayList<>(0);
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
@@ -23,6 +23,8 @@ public class AddTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
+
+        list.printArray();
     }
 
     @Test

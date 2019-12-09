@@ -2,13 +2,6 @@ package arrayList;
 
 import java.util.*;
 
-//1) Если вызвать get у пустого листа, твой отдает null, неправильно, по моему.
-// Все таки ожидаю IndexOutOfBoundsException +
-// 2) Когда я удаляю несуществующий элемент,
-// тоже хотелось бы видеть IndexOutOfBoundsException +
-// 3) Почему я не могу создать список нулевой длины?
-// 4) getElementData - что за метод и зачем он нужен? Ты даешь доступ к массиву,
-// который лежит в основе списка, по моему реализация должна быть полностью скрыта.
 // 5) Мне не нравится добавление и удаление элемент по индексу(add, addAll, removeByIndex).
 // Не вижу вообще никакого смысла копировать 2 раза.
 // 5.5) От метода removeByIndex вообще глаза заболели.
@@ -20,7 +13,8 @@ import java.util.*;
 // элегантно превращается в
 // return collectionArray.length > 0;
 // 8) Вообще, зачем тебе два метода: removeByIndex и remove?
-// 9) Слишком много лишнего в тестах, убери все принтлны и вообще все что не относится к assert`у.
+// 9) Слишком много лишнего в тестах, +
+// убери все принтлны и вообще все что не относится к assert`у.
 
 
 public class MyArrayList<E> extends AbstractList<E>{
@@ -40,7 +34,7 @@ public class MyArrayList<E> extends AbstractList<E>{
     }
 
     public MyArrayList(int initialCapacity){
-        if (initialCapacity > 0){
+        if (initialCapacity >= 0){
             this.elementData = new Object[initialCapacity];
             this.maxSize = initialCapacity;
             this.size = 0;
@@ -50,10 +44,6 @@ public class MyArrayList<E> extends AbstractList<E>{
                     initialCapacity);
         }
 
-    }
-
-    public Object[] getElementData() {
-        return elementData;
     }
 
     private void checkCapacity() {
@@ -85,12 +75,9 @@ public class MyArrayList<E> extends AbstractList<E>{
     public void add(int index, E element){
         checkIndexAdd(index);
         checkCapacity();
-        Object[] afterInsertBuffer = new Object[size-index];
-        System.arraycopy(elementData,index,
-                afterInsertBuffer,0,afterInsertBuffer.length);
+        System.arraycopy(elementData, index, elementData,
+                index + 1,size - index);
         elementData[index] = element;
-        System.arraycopy(afterInsertBuffer,0,elementData,
-                index+1,afterInsertBuffer.length);
     }
 
     public boolean addAll(Collection<? extends E> c){
