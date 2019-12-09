@@ -65,6 +65,33 @@ public class MyLinkedList<E>
     }
 
     public boolean remove(Object o){
+        Node<E> current = last;
+        int currentIndex = size-1;
+
+        while (current != null){
+            if(current.item.equals(o)){
+                checkIndex(currentIndex);
+                Node<E> deleteNode = node(currentIndex);
+                E value = deleteNode.item;
+                if (currentIndex == 0) {
+                    deleteNode.next.prev = first;
+                    first = deleteNode.next;
+                    deleteNode = null;
+                } else if (currentIndex == size-1){
+                    last = deleteNode.prev;
+                    deleteNode.prev.next = last;
+                    deleteNode = null;
+                } else {
+                    deleteNode.prev.next = deleteNode.next;
+                    deleteNode.next.prev = deleteNode.prev;
+                    deleteNode = null;
+                }
+                size--;
+                return true;
+            }
+            current = current.prev;
+            currentIndex--;
+        }
         return false;
     }
 
@@ -149,7 +176,6 @@ public class MyLinkedList<E>
                     ("Index: " + index + ", Size: " + size);
         }
     }
-
 
     @Override
     public ListIterator<E> listIterator(int index){
