@@ -3,13 +3,8 @@ package linkedList;
 import java.util.*;
 
 /*
-3) deleteNode = nulldeleteNode = null; - идея подсказывает, что не нужно
-4) removeByIndexAndValue - может я что-то не так понял,
- но похоже что у нового последнего(или первого) элемента
-  последним или первым элементом будет не null, а он же сам.
+
 5) addAll?
-6) Обращение к несуществующемцу элементу(get, remlove)
- - наллпоинтер эксепшен вместо индексаутофбоунд эксепшен
 7) removeAll работает неверно.
  */
 
@@ -126,11 +121,19 @@ public class MyLinkedList<E>
         Node<E> deleteNode = node(index);
         E value = deleteNode.item;
         if (index == 0) {
-            deleteNode.next.prev = first;
-            first = deleteNode.next;
+            if (deleteNode.next == null){
+                first = deleteNode.prev;
+            } else {
+                deleteNode.next.prev = first;
+                first = deleteNode.next;
+            }
         } else if (index == size - 1){
-            last = deleteNode.prev;
-            deleteNode.prev.next = last;
+            if (deleteNode.prev == null){
+                first = deleteNode.next;
+            } else {
+                last = deleteNode.prev;
+                deleteNode.prev.next = last;
+            }
         } else {
             deleteNode.prev.next = deleteNode.next;
             deleteNode.next.prev = deleteNode.prev;
@@ -235,7 +238,16 @@ public class MyLinkedList<E>
 
         @Override
         public void remove() {
+            if (lastReturned == null)
+                throw new IllegalStateException();
 
+            Node<E> lastNext = lastReturned.next;
+            MyLinkedList.this.remove(lastReturned.item);
+            if (next == lastReturned)
+                next = lastNext;
+            else
+                nextIndex--;
+            lastReturned = null;
         }
 
         @Override
