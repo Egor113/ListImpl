@@ -9,8 +9,10 @@ public class LinkedListMain {
         list.add(2);
 
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i);
+            System.out.print(i + " ");
         }
+
+        list.get(2);
 
     }
 }

@@ -2,21 +2,33 @@ package linkedList;
 
 import java.util.*;
 
+/*
+3) deleteNode = nulldeleteNode = null; - идея подсказывает, что не нужно
+4) removeByIndexAndValue - может я что-то не так понял,
+ но похоже что у нового последнего(или первого) элемента
+  последним или первым элементом будет не null, а он же сам.
+5) addAll?
+6) Обращение к несуществующемцу элементу(get, remlove)
+ - наллпоинтер эксепшен вместо индексаутофбоунд эксепшен
+7) removeAll работает неверно.
+ */
+
 public class MyLinkedList<E>
         extends AbstractSequentialList<E> {
 
-    int size = 0;
+    private int size = 0;
 
-    Node<E> first;
+    private Node<E> first;
 
-    Node<E> last;
+    private Node<E> last;
 
     public MyLinkedList() {}
 
     public void addFirst(E e) {
         if (size == 0) {
             final Node<E> newElement = new Node<>(last, e, first);
-            last = first = newElement;
+            first = newElement;
+            last = newElement;
             size ++;
         }
         else {
@@ -31,7 +43,8 @@ public class MyLinkedList<E>
     public void addLast(E e) {
         if (size == 0) {
             final Node<E> newElement = new Node<>(last, e, first);
-            last = first = newElement;
+            first = newElement;
+            last = newElement;
             size ++;
         }
         else {
@@ -54,32 +67,13 @@ public class MyLinkedList<E>
 
         while (current != null){
             if(current.item.equals(o)){
-                removeByIndexAndValue(currentIndex);
+                remove(currentIndex);
                 return true;
             }
             current = current.prev;
             currentIndex--;
         }
         return false;
-    }
-
-    private void removeByIndexAndValue(int index){
-        checkIndex(index);
-        Node<E> deleteNode = node(index);
-        if (index == 0) {
-            deleteNode.next.prev = first;
-            first = deleteNode.next;
-            deleteNode = null;
-        } else if (index == size - 1){
-            last = deleteNode.prev;
-            deleteNode.prev.next = last;
-            deleteNode = null;
-        } else {
-            deleteNode.prev.next = deleteNode.next;
-            deleteNode.next.prev = deleteNode.prev;
-            deleteNode = null;
-        }
-        size--;
     }
 
     public boolean addAll(Collection<? extends E> c) {
@@ -113,7 +107,7 @@ public class MyLinkedList<E>
     }
 
     public void add(int index, E element) {
-        checkIndex(index);
+        checkIndexAdd(index);
         Node<E> current = node(index-1);
         if (index == 0){
             addFirst(element);
@@ -128,27 +122,27 @@ public class MyLinkedList<E>
     }
 
     public E remove(int index){
-        checkIndex(index);
+        checkIndexGet(index);
         Node<E> deleteNode = node(index);
         E value = deleteNode.item;
         if (index == 0) {
             deleteNode.next.prev = first;
             first = deleteNode.next;
-            deleteNode = null;
-        } else if (index == size){
+        } else if (index == size - 1){
             last = deleteNode.prev;
             deleteNode.prev.next = last;
-            deleteNode = null;
         } else {
             deleteNode.prev.next = deleteNode.next;
             deleteNode.next.prev = deleteNode.prev;
-            deleteNode = null;
+            deleteNode.next = null;
+            deleteNode.prev = null;
         }
+        deleteNode.item = null;
         size--;
         return value;
     }
 
-    Node<E> node(int index) {
+    private Node<E> node(int index) {
         Node<E> foundNode, current = last;
         foundNode = last;
         int currentIndex = size-1;
@@ -164,12 +158,19 @@ public class MyLinkedList<E>
     }
 
     public E get(int index){
-        checkIndex(index);
+        checkIndexAdd(index);
         return node(index).item;
     }
 
-    private void checkIndex(int index){
+    private void checkIndexAdd(int index){
         if (index < 0 || index > size){
+            throw new IndexOutOfBoundsException
+                    ("Index: " + index + ", Size: " + size);
+        }
+    }
+
+    private void checkIndexGet(int index){
+        if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException
                     ("Index: " + index + ", Size: " + size);
         }

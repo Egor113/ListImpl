@@ -41,7 +41,7 @@ public class RemoveByIndexTest {
         list.print();
         System.out.println();
 
-        list.remove(list.size());
+        list.remove(list.size() - 1 );
         list.print();
 
         int [] arr = new int[]{0,1,2,3};
