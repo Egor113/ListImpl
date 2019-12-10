@@ -4,11 +4,12 @@ import linkedList.MyLinkedList;
 import org.junit.Assert;
 import org.junit.Test;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class ListItrTest {
 
     @Test
-    public void ListItrTest1(){
+    public void listItrTest1(){
         MyLinkedList<Integer> list = new MyLinkedList<>();
         for (int i = 1; i < 4; i++) {
             list.add(i);
@@ -27,7 +28,7 @@ public class ListItrTest {
     }
 
     @Test
-    public void ListItrTest2(){
+    public void listItrTest2(){
         MyLinkedList<Integer> list = new MyLinkedList<>();
         for (int i = 1; i < 4; i++) {
             list.add(i);
@@ -61,6 +62,35 @@ public class ListItrTest {
         }
 
         Assert.assertEquals(0, list.size());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void ListItrTest4(){
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        for (int i = 1; i < 4; i++) {
+            list.add(i);
+        }
+
+        System.out.println();
+
+        ListIterator<Integer> iterator = list.listIterator(0);
+        while (iterator.hasNext()){
+            iterator.remove();
+            iterator.next();
+        }
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void ListItrTest5(){
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        for (int i = 1; i < 4; i++) {
+            list.add(i);
+        }
+
+        System.out.println();
+
+        ListIterator<Integer> iterator = list.listIterator(0);
+        iterator.previous();
     }
 
 

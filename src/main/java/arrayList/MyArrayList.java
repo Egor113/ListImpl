@@ -162,20 +162,30 @@ public class MyArrayList<E> extends AbstractList<E>{
         }
     }
 
-//    public boolean removeAll(Collection<?> c){
-//        boolean isDeleted = false;
-//        Object[] collArr = c.toArray(new Object[c.size()]);
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < collArr.length; j++) {
-//                if (elementData[i].equals(collArr[j])){
-//                    elementData[i] = null;
-//                    isDeleted = true;
-//                }
-//            }
-//        }
-//
-//        return isDeleted;
-//    }
+    public boolean removeAll(Collection<?> c){
+        int deleteCount = 0;
+        Object[] collArr = c.toArray();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < collArr.length; j++) {
+                if (elementData[i] != null && elementData[i].equals(collArr[j])){
+                    elementData[i] = null;
+                    deleteCount++;
+                }
+            }
+        }
+        int currentSize = size;
+        for (int j = deleteCount; j > 0 ; j--) {
+            for (int i = 0; i < size; i++) {
+                if (elementData[i] == null){
+                    System.arraycopy(elementData, i + 1,
+                            elementData, i, size - i);
+                    currentSize --;
+                }
+            }
+        }
+        size = currentSize;
+        return deleteCount > 0;
+    }
 
     public void printArray(){
         for (int i = 0; i < maxSize; i++) {

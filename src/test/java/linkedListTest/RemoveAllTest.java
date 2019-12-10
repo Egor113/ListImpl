@@ -31,14 +31,43 @@ public class RemoveAllTest {
 
         list.removeAll(set);
         list.print();
-//
-//        int [] arr = new int[]{1,2,3};
-//        int i = arr.length-1;
-//        ListIterator<Integer> iterator = list.listIterator(list.size());
-//        while (iterator.hasPrevious()){
-//            Assert.assertEquals(arr[i], (int) iterator.previous());
-//            i--;
-//        }
 
+        int [] arr = new int[]{0,3};
+        int i = arr.length-1;
+        ListIterator<Integer> iterator = list.listIterator(list.size());
+        while (iterator.hasPrevious()){
+            Assert.assertEquals(arr[i], (int) iterator.previous());
+            i--;
+        }
+    }
+
+    @Test
+    public void removeAllTest2(){
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            list.add(i);
+        }
+
+        list.print();
+        System.out.println();
+
+        Set<Integer> set = new HashSet<>();
+        set.add(100);
+        set.add(200);
+        for (int i: set) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        list.removeAll(set);
+        list.print();
+
+        int [] arr = new int[]{0,1,2,3};
+        int i = arr.length-1;
+        ListIterator<Integer> iterator = list.listIterator(list.size());
+        while (iterator.hasPrevious()){
+            Assert.assertEquals(arr[i], (int) iterator.previous());
+            i--;
+        }
     }
 }

@@ -18,9 +18,11 @@ public class LinkedListMain2 {
         for (int i = 1; i < 4; i++) {
             set.add(i * 100);
         }
+
         for (int i: set) {
             System.out.print(i + " ");
         }
+
         System.out.println();
         list.addAll(0,set);
 
