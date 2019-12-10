@@ -17,20 +17,12 @@ public class RemoveAllTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Set<Integer> set = new HashSet<>();
         for (int i = 1; i < 3; i++) {
             set.add(i);
         }
-        for (int i: set) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
 
         list.removeAll(set);
-        list.print();
 
         int [] arr = new int[]{0,3};
         int i = arr.length-1;
@@ -48,19 +40,11 @@ public class RemoveAllTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Set<Integer> set = new HashSet<>();
         set.add(100);
         set.add(200);
-        for (int i: set) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
 
         list.removeAll(set);
-        list.print();
 
         int [] arr = new int[]{0,1,2,3};
         int i = arr.length-1;

@@ -15,9 +15,6 @@ public class ListItrTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         int [] arr = new int[]{1,2,3};
         int i = arr.length-1;
         ListIterator<Integer> iterator = list.listIterator(list.size());
@@ -33,9 +30,6 @@ public class ListItrTest {
         for (int i = 1; i < 4; i++) {
             list.add(i);
         }
-
-        //list.print();
-        System.out.println();
 
         int [] arr = new int[]{1,2,3};
         int i = 0;
@@ -53,8 +47,6 @@ public class ListItrTest {
             list.add(i);
         }
 
-        System.out.println();
-
         ListIterator<Integer> iterator = list.listIterator(0);
         while (iterator.hasNext()){
             iterator.next();
@@ -71,8 +63,6 @@ public class ListItrTest {
             list.add(i);
         }
 
-        System.out.println();
-
         ListIterator<Integer> iterator = list.listIterator(0);
         while (iterator.hasNext()){
             iterator.remove();
@@ -86,8 +76,6 @@ public class ListItrTest {
         for (int i = 1; i < 4; i++) {
             list.add(i);
         }
-
-        System.out.println();
 
         ListIterator<Integer> iterator = list.listIterator(0);
         iterator.previous();

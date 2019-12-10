@@ -16,7 +16,6 @@ public class AddFirstTest {
         for (int i = 0; i < 4; i++) {
             list.addFirst(i);
         }
-        list.print();
 
         int i = 0;
         ListIterator<Integer> iterator = list.listIterator(list.size());
@@ -34,8 +33,6 @@ public class AddFirstTest {
         list.addFirst(1);
         list.addFirst(null);
         list.addFirst(3);
-
-        list.print();
 
         Assert.assertEquals(3, (int) list.get(0));
         Assert.assertNull(list.get(1));

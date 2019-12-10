@@ -2,12 +2,6 @@ package linkedList;
 
 import java.util.*;
 
-/*
-
-5) addAll?
-7) removeAll работает неверно.
- */
-
 public class MyLinkedList<E>
         extends AbstractSequentialList<E> {
 
@@ -276,13 +270,6 @@ public class MyLinkedList<E>
     @Override
     public int size() {
         return size;
-    }
-
-    public void print(){
-        ListIterator<E> iterator = listIterator(size);
-        while (iterator.hasPrevious()){
-            System.out.print(iterator.previous() + " ");
-        }
     }
 
 }

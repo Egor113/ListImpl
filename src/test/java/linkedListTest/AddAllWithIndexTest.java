@@ -17,19 +17,12 @@ public class AddAllWithIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Set<Integer> set = new HashSet<>();
         for (int i = 1; i < 4; i++) {
             set.add(i * 100);
         }
-        for (int i: set) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
+
         list.addAll(0,set);
-        list.print();
 
         int [] arr = new int[]{100,200,300,0,1,2,3};
         int i = 6;
@@ -47,19 +40,12 @@ public class AddAllWithIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Set<Integer> set = new HashSet<>();
         for (int i = 1; i < 4; i++) {
             set.add(i * 100);
         }
-        for (int i: set) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
+
         list.addAll(2,set);
-        list.print();
 
         int [] arr = new int[]{0,1,100,200,300,2,3};
         int i = 6;

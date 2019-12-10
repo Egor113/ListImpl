@@ -15,11 +15,7 @@ public class RemoveByIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         list.remove(0);
-        list.print();
 
         int [] arr = new int[]{1,2,3};
         int i = arr.length-1;
@@ -38,11 +34,7 @@ public class RemoveByIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         list.remove(list.size() - 1 );
-        list.print();
 
         int [] arr = new int[]{0,1,2,3};
         int i = arr.length-1;
@@ -61,11 +53,7 @@ public class RemoveByIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         list.remove(2);
-        list.print();
 
         int [] arr = new int[]{0,1,3};
         int i = arr.length-1;

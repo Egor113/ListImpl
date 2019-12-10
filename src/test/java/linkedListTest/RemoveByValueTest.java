@@ -15,12 +15,8 @@ public class RemoveByValueTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Object o = 0;
         list.remove(o);
-        list.print();
 
         int [] arr = new int[]{1,2,3};
         int i = arr.length-1;
@@ -39,12 +35,8 @@ public class RemoveByValueTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Object o = 2;
         list.remove(o);
-        list.print();
 
         int [] arr = new int[]{0,1,3};
         int i = arr.length-1;
@@ -63,12 +55,8 @@ public class RemoveByValueTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Object o = 3;
         list.remove(o);
-        list.print();
 
         int [] arr = new int[]{0,1,2};
         int i = arr.length-1;

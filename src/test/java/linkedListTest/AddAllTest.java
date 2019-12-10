@@ -15,19 +15,11 @@ public class AddAllTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Set<Integer> set = new HashSet<>();
         for (int i = 1; i < 3; i++) {
             set.add(i * 100);
         }
-        for (int i: set) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
         list.addAll(set);
-        list.print();
 
         int [] arr = new int[]{0,1,2,3,100,200};
         int i = 5;
@@ -45,13 +37,9 @@ public class AddAllTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         Set<Integer> set = new HashSet<>();
 
         list.addAll(set);
-        list.print();
 
         int [] arr = new int[]{0,1,2,3};
         int i = 3;
@@ -68,9 +56,6 @@ public class AddAllTest {
         for (int i = 0; i < 4; i++) {
             list.add(i);
         }
-
-        list.print();
-        System.out.println();
 
         Set<Integer> set = null;
 

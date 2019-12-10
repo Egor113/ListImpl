@@ -15,11 +15,7 @@ public class AddLastWithIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         list.add(0,100);
-        list.print();
 
         int [] arr = new int[]{100,0,1,2,3};
         int i = 4;
@@ -38,11 +34,7 @@ public class AddLastWithIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         list.add(list.size(),100);
-        list.print();
 
         int [] arr = new int[]{0,1,2,3,100};
         int i = 4;
@@ -61,11 +53,7 @@ public class AddLastWithIndexTest {
             list.add(i);
         }
 
-        list.print();
-        System.out.println();
-
         list.add(2,100);
-        list.print();
 
         int [] arr = new int[]{0,1,100,2,3};
         int i = 4;
@@ -84,7 +72,6 @@ public class AddLastWithIndexTest {
             list.add(i);
         }
 
-        list.print();
         System.out.println();
 
         list.add(-1,100);
@@ -96,9 +83,6 @@ public class AddLastWithIndexTest {
         for (int i = 0; i < 4; i++) {
             list.add(i);
         }
-
-        list.print();
-        System.out.println();
 
         list.add(5,100);
     }

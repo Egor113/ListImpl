@@ -189,7 +189,7 @@ public class MyArrayList<E> extends AbstractList<E>{
 
     @Override
     public E get(int index) {
-        if (index < 0 || index >= size || size == 0){
+        if (index < 0 || size == 0 || index >= size){
             throw new IndexOutOfBoundsException
                     ("Index: " + index + ", Size: " + size);
         }
