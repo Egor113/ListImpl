@@ -187,13 +187,6 @@ public class MyArrayList<E> extends AbstractList<E>{
         return deleteCount > 0;
     }
 
-    public void printArray(){
-        for (int i = 0; i < maxSize; i++) {
-            System.out.print(elementData[i] + " ");
-        }
-        System.out.println();
-    }
-
     @Override
     public E get(int index) {
         if (index < 0 || index >= size || size == 0){

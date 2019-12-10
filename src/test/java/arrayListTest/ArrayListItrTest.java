@@ -4,8 +4,6 @@ import arrayList.MyArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -17,7 +15,6 @@ public class ArrayListItrTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Iterator<String> iterator = list.iterator();
         int i = 0;
@@ -33,7 +30,6 @@ public class ArrayListItrTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()){
@@ -42,8 +38,6 @@ public class ArrayListItrTest {
         }
 
         Assert.assertEquals(0, list.size());
-
-        list.printArray();
     }
 
     @Test(expected = NoSuchElementException.class)

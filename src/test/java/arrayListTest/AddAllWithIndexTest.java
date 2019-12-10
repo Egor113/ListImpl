@@ -17,17 +17,12 @@ public class AddAllWithIndexTest {
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Set<String> set = new HashSet<>();
         set.add("100");
         set.add("200");
         set.add("300");
 
-        for (String s: set) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
         list.addAll(0,set);
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -36,8 +31,6 @@ public class AddAllWithIndexTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test
@@ -46,17 +39,12 @@ public class AddAllWithIndexTest {
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Set<String> set = new HashSet<>();
         set.add("100");
         set.add("200");
         set.add("300");
 
-        for (String s: set) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
         list.addAll(2,set);
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -66,7 +54,6 @@ public class AddAllWithIndexTest {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
 
-        list.printArray();
     }
 
     @Test
@@ -75,17 +62,12 @@ public class AddAllWithIndexTest {
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Set<String> set = new HashSet<>();
         set.add("100");
         set.add("200");
         set.add("300");
 
-        for (String s: set) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
         list.addAll(list.size(),set);
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -95,7 +77,6 @@ public class AddAllWithIndexTest {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
 
-        list.printArray();
     }
 
     @Test(expected = NullPointerException.class)
@@ -112,7 +93,6 @@ public class AddAllWithIndexTest {
         for (int i = 1; i <= 3; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Set<String> set = new HashSet<>();
 
@@ -121,8 +101,6 @@ public class AddAllWithIndexTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test(expected = IndexOutOfBoundsException.class)

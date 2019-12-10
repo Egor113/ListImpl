@@ -23,8 +23,6 @@ public class AddTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test
@@ -34,7 +32,6 @@ public class AddTest {
         list.add("1");
         list.add(null);
 
-        list.printArray();
         Assert.assertEquals("1",list.get(0));
         Assert.assertNull(list.get(1));
     }

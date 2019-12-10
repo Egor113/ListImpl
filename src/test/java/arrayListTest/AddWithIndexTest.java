@@ -17,7 +17,6 @@ public class AddWithIndexTest {
             list.add(Integer.toString(i));
         }
 
-        list.printArray();
         list.add(0,"100");
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -26,8 +25,6 @@ public class AddWithIndexTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test
@@ -38,7 +35,6 @@ public class AddWithIndexTest {
             list.add(Integer.toString(i));
         }
 
-        list.printArray();
         list.add(3,"100");
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -47,8 +43,6 @@ public class AddWithIndexTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test
@@ -59,7 +53,6 @@ public class AddWithIndexTest {
             list.add(Integer.toString(i));
         }
 
-        list.printArray();
         list.add(list.size(),"100");
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -68,8 +61,6 @@ public class AddWithIndexTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test(expected = IndexOutOfBoundsException.class)

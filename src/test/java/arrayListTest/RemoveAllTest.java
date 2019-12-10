@@ -17,15 +17,12 @@ public class RemoveAllTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
-        System.out.println();
 
         Set<String> set = new HashSet<>();
         set.add("1");
         set.add("2");
 
         list.removeAll(set);
-        list.printArray();
 
         ArrayList<String> test = new ArrayList<>(Arrays.asList("3","4"));
 
@@ -40,15 +37,12 @@ public class RemoveAllTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
-        System.out.println();
 
         Set<String> set = new HashSet<>();
         set.add("100");
         set.add("200");
 
         list.removeAll(set);
-        list.printArray();
 
         ArrayList<String> test = new ArrayList<>(Arrays.asList("1","2","3","4"));
 

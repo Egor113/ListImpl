@@ -15,8 +15,6 @@ public class RemoveByValueTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
-
         list.remove("3");
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -25,8 +23,6 @@ public class RemoveByValueTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test
@@ -35,9 +31,7 @@ public class RemoveByValueTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
         Assert.assertFalse(list.remove("100"));
-        list.printArray();
     }
 
     @Test
@@ -46,15 +40,11 @@ public class RemoveByValueTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
-
         ArrayList<String> testList = new ArrayList<>(Arrays.
                 asList("1","2","3","4"));
 
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 }

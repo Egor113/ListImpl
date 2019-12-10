@@ -15,7 +15,6 @@ public class RemoveByIndexTest {
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         list.remove(0);
 
@@ -25,8 +24,6 @@ public class RemoveByIndexTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test
@@ -35,7 +32,6 @@ public class RemoveByIndexTest {
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         list.remove(4);
 
@@ -46,7 +42,6 @@ public class RemoveByIndexTest {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
 
-        list.printArray();
     }
 
     @Test
@@ -55,8 +50,6 @@ public class RemoveByIndexTest {
         for (int i = 1; i <= 6; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
-
         list.remove(list.size() - 1);
 
         ArrayList<String> testList = new ArrayList<>(Arrays.
@@ -65,8 +58,6 @@ public class RemoveByIndexTest {
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(testList.get(i),list.get(i));
         }
-
-        list.printArray();
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -91,10 +82,8 @@ public class RemoveByIndexTest {
     public void removeByIndexTest6(){
         MyArrayList<String> list = new MyArrayList<>(1);
         list.add("1");
-        list.printArray();
         list.remove(0);
         Assert.assertEquals(0,list.size());
-        list.printArray();
     }
 
 }

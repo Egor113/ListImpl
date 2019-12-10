@@ -17,17 +17,12 @@ public class AddAllTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Set<String> set = new HashSet<>();
         set.add("100");
         set.add("200");
         set.add("300");
 
-        for (String s: set) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
         list.addAll(set);
         ArrayList<String> test = new ArrayList<>(Arrays.
                 asList("1","2","3","4","100","200","300"));
@@ -36,7 +31,6 @@ public class AddAllTest {
             Assert.assertEquals(test.get(i),list.get(i));
         }
 
-        list.printArray();
     }
 
     @Test(expected = NullPointerException.class)
@@ -52,7 +46,6 @@ public class AddAllTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
 
         Set<String> set = new HashSet<>();
 
@@ -64,8 +57,6 @@ public class AddAllTest {
             Assert.assertEquals(test.get(i),list.get(i));
         }
 
-
-        list.printArray();
     }
 
     @Test
@@ -74,15 +65,12 @@ public class AddAllTest {
         for (int i = 1; i <= 4; i++) {
             list.add(Integer.toString(i));
         }
-        list.printArray();
-
         Set<String> set = new HashSet<>();
 
         list.addAll(set);
 
         Assert.assertFalse( list.addAll(set));
 
-        list.printArray();
     }
 
 
