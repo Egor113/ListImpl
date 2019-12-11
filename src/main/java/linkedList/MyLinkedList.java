@@ -155,8 +155,15 @@ public class MyLinkedList<E>
     }
 
     public E get(int index){
-        checkIndexAdd(index);
+        checkIndexGet(index);
         return node(index).item;
+    }
+
+    public E set(int index, E element) {
+        checkIndexGet(index);
+        final Node<E> current = node(index);
+        current.item = element;
+        return current.item;
     }
 
     private void checkIndexAdd(int index){
@@ -222,12 +229,12 @@ public class MyLinkedList<E>
 
         @Override
         public int nextIndex() {
-            return 0;
+            return nextIndex;
         }
 
         @Override
         public int previousIndex() {
-            return 0;
+            return nextIndex - 1;
         }
 
         @Override
