@@ -13,6 +13,17 @@ public class MyLinkedList<E>
 
     public MyLinkedList() {}
 
+    private void addBefore(E e, Node<E> succ){
+        Node<E> newNode = new Node<>(succ.prev, e, succ);
+        if (succ.prev == null){
+            first = newNode;
+        } else {
+            succ.prev.next = newNode;
+        }
+        succ.prev = newNode;
+        size++;
+    }
+
     public void addFirst(E e) {
         if (size == 0) {
             final Node<E> newElement = new Node<>(last, e, first);
@@ -253,12 +264,20 @@ public class MyLinkedList<E>
 
         @Override
         public void set(E e) {
-
+            if (lastReturned == null)
+                throw new IllegalStateException();
+            lastReturned.item = e;
         }
 
         @Override
         public void add(E e) {
-
+            lastReturned = null;
+            if (next == null){
+                addLast(e);
+            }else {
+                addBefore(e, next);
+            }
+            nextIndex++;
         }
     }
 
