@@ -150,6 +150,29 @@ public class MyLinkedList<E>
         return value;
     }
 
+    public boolean myRemoveAll(Collection<? extends E> c){
+        Object[] arr = c.toArray();
+        int currentSize = size;
+
+        for (int i = 0; i < arr.length ; i++) {
+            Node<E> current = last;
+            int currentIndex = size-1;
+
+            while (current != null){
+                if(current.item != null && current.item.equals(arr[i])){
+                    remove(currentIndex);
+                    current = last;
+                    currentIndex = size-1;
+                } else {
+                    current = current.prev;
+                    currentIndex--;
+                }
+            }
+        }
+        return size < currentSize;
+    }
+
+
     private Node<E> node(int index) {
         Node<E> foundNode, current = last;
         foundNode = last;
