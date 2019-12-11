@@ -54,4 +54,39 @@ public class RemoveAllTest {
             i--;
         }
     }
+
+    @Test
+    public void removeAllTest3(){
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            list.add(i);
+        }
+
+        Set<Integer> set = new HashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(300);
+
+        list.removeAll(set);
+
+        int [] arr = new int[]{0,3};
+        int i = arr.length-1;
+        ListIterator<Integer> iterator = list.listIterator(list.size());
+        while (iterator.hasPrevious()){
+            Assert.assertEquals(arr[i], (int) iterator.previous());
+            i--;
+        }
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void removeAllTest4(){
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            list.add(i);
+        }
+
+        Set<Integer> set = null;
+
+        list.removeAll(set);
+    }
 }
